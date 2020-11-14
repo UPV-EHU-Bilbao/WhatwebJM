@@ -88,7 +88,6 @@ public class MainKud {
 
     @FXML
     void initialize() {
-      comboBoxId.getItems().addAll("Bizkaia","Gipuzkoa","Araba");
     }
 
     public void setMainApp(App m) {

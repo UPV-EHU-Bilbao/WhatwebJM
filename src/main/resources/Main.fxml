@@ -56,7 +56,7 @@
           <RowConstraints maxHeight="426.0" minHeight="10.0" prefHeight="403.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView prefHeight="403.0" prefWidth="499.0">
+            <TableView prefHeight="391.0" prefWidth="637.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="URL" />
                 <TableColumn prefWidth="128.00003051757812" text="CMS" />
@@ -69,22 +69,34 @@
             </TableView>
          </children>
       </GridPane>
-      <Pane layoutX="259.0" layoutY="274.0" prefHeight="76.0" prefWidth="644.0">
+      <Pane layoutX="259.0" layoutY="229.0" prefHeight="76.0" prefWidth="644.0">
          <children>
             <FontAwesomeIconView glyphName="SEARCH" layoutX="32.0" layoutY="42.0" wrappingWidth="14.300000190734863">
                <font>
                   <Font size="22.0" />
                </font>
             </FontAwesomeIconView>
-            <ComboBox layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" />
+            <ComboBox layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" style="-fx-border-color: #3F2B63;" />
             <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Add URL">
                <graphic>
                   <FontAwesomeIconView fill="#fffdfd" />
                </graphic>
             </Button>
-            <TextField layoutX="80.0" layoutY="24.0" prefHeight="28.0" prefWidth="287.0" />
+            <TextField layoutX="80.0" layoutY="24.0" prefHeight="28.0" prefWidth="287.0" style="-fx-border-color: #3F2B63;" />
          </children>
       </Pane>
-      <Pane layoutX="261.0" layoutY="131.0" prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;" />
+      <Pane layoutX="259.0" layoutY="60.0" prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;">
+         <children>
+            <Label layoutX="90.0" layoutY="23.0" text="WordPRess, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="281.0" layoutY="72.0" text="CMS" textFill="WHITE">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+         </children></Pane>
    </children>
 </AnchorPane>
