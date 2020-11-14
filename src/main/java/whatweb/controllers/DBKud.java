@@ -56,7 +56,7 @@ public class DBKud {
     // singleton patroia
     private static DBKud instantzia = new DBKud();
 
-    private DBKudeatzaile()  {
+    private DBKud(){
 
         Properties properties = null;
         InputStream in = null;

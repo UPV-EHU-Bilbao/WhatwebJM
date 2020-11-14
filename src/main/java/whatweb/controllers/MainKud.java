@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import whatweb.App;
 
 public class MainKud {
 
@@ -57,6 +58,8 @@ public class MainKud {
     @FXML
     private TableColumn<?, Date> lastUpdateId;
 
+    private App app;
+
     @FXML
     void addCick(ActionEvent event) { //URL berri bat gehitu
 
@@ -86,5 +89,9 @@ public class MainKud {
     @FXML
     void initialize() {
       comboBoxId.getItems().addAll("Bizkaia","Gipuzkoa","Araba");
+    }
+
+    public void setMainApp(App m) {
+        app = m;
     }
 }
