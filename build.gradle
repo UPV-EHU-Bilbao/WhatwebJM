@@ -29,8 +29,10 @@ dependencies {
 
     //Fontawesome
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
 }
+
+def newArgs = [ '--add-exports','java.desktop/com.apple.eawt=ALL-UNNAMED',
+                '--add-opens', 'javafx.graphics/javafx.css=de.jensd.fx.fontawesomefx.commons',]
 
 // Define the main class for the application
 mainClassName = 'whatweb.App'
