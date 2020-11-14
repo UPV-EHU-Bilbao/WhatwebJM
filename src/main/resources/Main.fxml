@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,9 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<?import javafx.scene.control.TextField?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.MainKud">
    <children>
       <VBox layoutX="-8.0" layoutY="-6.0" prefHeight="744.0" prefWidth="269.0" style="-fx-background-color: #3F2B63;">
          <children>
@@ -72,18 +71,18 @@
       </GridPane>
       <Pane layoutX="259.0" layoutY="274.0" prefHeight="76.0" prefWidth="644.0">
          <children>
-            <TextField layoutX="67.0" layoutY="19.0" prefHeight="28.0" prefWidth="199.0" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="32.0" layoutY="42.0" wrappingWidth="14.300000190734863">
                <font>
                   <Font size="22.0" />
                </font>
             </FontAwesomeIconView>
-            <ComboBox layoutX="291.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" />
-            <Button layoutX="432.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: #3F2B63;" text="Add URL">
+            <ComboBox layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" />
+            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Add URL">
                <graphic>
                   <FontAwesomeIconView fill="#fffdfd" />
                </graphic>
             </Button>
+            <TextField layoutX="80.0" layoutY="24.0" prefHeight="28.0" prefWidth="287.0" />
          </children>
       </Pane>
       <Pane layoutX="261.0" layoutY="131.0" prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;" />

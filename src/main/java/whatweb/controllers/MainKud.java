@@ -1,6 +1,7 @@
 package whatweb.controllers;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class MainKud {
     private TextField urlField;
 
     @FXML
-    private ComboBox<?> comboBoxId;
+    private ComboBox<String> comboBoxId;
 
     @FXML
     private Button addURLId;
@@ -36,62 +37,54 @@ public class MainKud {
     private TableView<?> tableId;
 
     @FXML
-    private TableColumn<?, ?> urlId;
+    private TableColumn<?, URL> urlId;
 
     @FXML
-    private TableColumn<?, ?> httpServerId;
+    private TableColumn<?, String> httpServerId;
 
     @FXML
-    private TableColumn<?, ?> conutryId;
+    private TableColumn<?, String> conutryId;
 
     @FXML
-    private TableColumn<?, ?> emailId;
+    private TableColumn<?, String> emailId;
 
     @FXML
-    private TableColumn<?, ?> ipId;
+    private TableColumn<?, String> ipId;
 
     @FXML
-    private TableColumn<?, ?> cmsVersionId;
+    private TableColumn<?, String> cmsVersionId;
 
     @FXML
-    private TableColumn<?, ?> lastUpdateId;
+    private TableColumn<?, Date> lastUpdateId;
 
     @FXML
-    void addCick(ActionEvent event) {
+    void addCick(ActionEvent event) { //URL berri bat gehitu
 
     }
 
     @FXML
-    void cmsClick(ActionEvent event) {
+    void cmsClick(ActionEvent event) { //CMS botoia klikatu
 
     }
 
     @FXML
-    void serverClick(ActionEvent event) {
+    void serverClick(ActionEvent event) { //Zerbitzari botoia klikatu
 
     }
 
     @FXML
-    void whatWebClick(ActionEvent event) {
+    void whatWebClick(ActionEvent event) { //WhatWeb botoia klikatu
 
     }
+
+    @FXML
+    void urlGehituClick(ActionEvent event) {
+
+    }
+
 
     @FXML
     void initialize() {
-        assert cmsId != null : "fx:id=\"cmsId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert serverId != null : "fx:id=\"serverId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert whatWebId != null : "fx:id=\"whatWebId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert urlField != null : "fx:id=\"urlField\" was not injected: check your FXML file 'Main.fxml'.";
-        assert comboBoxId != null : "fx:id=\"comboBoxId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert addURLId != null : "fx:id=\"addURLId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert tableId != null : "fx:id=\"tableId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert urlId != null : "fx:id=\"urlId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert httpServerId != null : "fx:id=\"httpServerId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert conutryId != null : "fx:id=\"conutryId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert emailId != null : "fx:id=\"emailId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert ipId != null : "fx:id=\"ipId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert cmsVersionId != null : "fx:id=\"cmsVersionId\" was not injected: check your FXML file 'Main.fxml'.";
-        assert lastUpdateId != null : "fx:id=\"lastUpdateId\" was not injected: check your FXML file 'Main.fxml'.";
-
+      comboBoxId.getItems().addAll("Bizkaia","Gipuzkoa","Araba");
     }
 }
