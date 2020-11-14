@@ -12,7 +12,9 @@ import whatweb.controllers.MainKud;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class App {
+import static javafx.application.Application.launch;
+
+public class App extends Application {
 
     private Parent mainUI;
 
@@ -36,6 +38,10 @@ public class App {
         mainUI = (Parent) loaderKautotu.load();
         mainKud = loaderKautotu.getController();
         mainKud.setMainApp(this);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 
