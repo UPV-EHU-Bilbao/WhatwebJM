@@ -44,7 +44,7 @@ public class MainKud {
     private TableColumn<?, String> httpServerId;
 
     @FXML
-    private TableColumn<?, String> conutryId;
+    private TableColumn<?, String> countryId;
 
     @FXML
     private TableColumn<?, String> emailId;
@@ -77,7 +77,7 @@ public class MainKud {
 
     @FXML
     void whatWebClick(ActionEvent event) { //WhatWeb botoia klikatu
-
+        app.whatWebErakutsi();
     }
 
     @FXML

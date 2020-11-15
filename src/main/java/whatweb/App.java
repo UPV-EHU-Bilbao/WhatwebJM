@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import whatweb.controllers.MainKud;
+import whatweb.controllers.WWKud;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,10 +18,12 @@ import static javafx.application.Application.launch;
 public class App extends Application {
 
     private Parent mainUI;
+    private Parent whatWebUI;
 
     private Stage stage;
 
     private MainKud mainKud;
+    private WWKud whatWebKud;
 
 
     public void start(Stage primaryStage) throws Exception {
@@ -28,22 +31,36 @@ public class App extends Application {
         stage = primaryStage;
         pantailakKargatu();
 
-        stage.setTitle("Eurobisioa");
-        stage.setScene(new Scene(mainUI,450,275));
-        stage.show();
+        hasieraKargatu();
+
     }
 
     private void pantailakKargatu() throws IOException {
-        FXMLLoader loaderKautotu = new FXMLLoader(getClass().getResource("/Main.fxml"));
-        mainUI = (Parent) loaderKautotu.load();
-        mainKud = loaderKautotu.getController();
+        FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/Main.fxml"));
+        mainUI = (Parent) loaderMain.load();
+        mainKud = loaderMain.getController();
         mainKud.setMainApp(this);
+
+        FXMLLoader loaderWhatWeb = new FXMLLoader(getClass().getResource("/whatweb.fxml"));
+        whatWebUI = (Parent) loaderWhatWeb.load();
+        whatWebKud = loaderWhatWeb.getController();
+        whatWebKud.setMainApp(this);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public void hasieraKargatu(){
+        stage.setTitle("What Web");
+        stage.setScene(new Scene(mainUI,899,732));
+        stage.show();
+    }
 
 
+    public void whatWebErakutsi() {
+        stage.setTitle("What Web");
+        stage.setScene(new Scene(whatWebUI,899,732));
+        stage.show();
+    }
 }
