@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import whatweb.App;
 
 public class WWKud {
@@ -47,6 +49,9 @@ public class WWKud {
     private App app;
 
     @FXML
+    private ImageView travoltaId;
+
+    @FXML
     void cmsClick(ActionEvent event) {
 
     }
@@ -58,9 +63,17 @@ public class WWKud {
 
     @FXML
     void eskaneatuClick(ActionEvent event) {
-        String newLine = System.getProperty("line.separator");
+        if(urlId.getText().equals("")){
+            travoltaId.setVisible(true);
+            Image i = travoltaId.getImage();
+            logId.setText("Mesedez, sartu URL bat");
+        }
+        else{
+            travoltaId.setVisible(false);
+            String newLine = System.getProperty("line.separator");
+            logId.setText( allProcesses().stream().collect(Collectors.joining(newLine)) );
+        }
 
-        logId.setText( allProcesses().stream().collect(Collectors.joining(newLine)) );
     }
 
     @FXML
@@ -77,6 +90,7 @@ public class WWKud {
 
     @FXML
     void initialize() {
+        travoltaId.setVisible(false);
 
     }
 
