@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import whatweb.App;
+import whatweb.model.Orrialde;
 
 public class MainKud {
 
@@ -17,7 +18,7 @@ public class MainKud {
     private URL location;
 
     @FXML
-    private TableColumn<?, ?> cmsId;
+    private TableColumn<Orrialde, String> cmsId;
 
     @FXML
     private Button serverId;
@@ -35,28 +36,28 @@ public class MainKud {
     private Button addURLId;
 
     @FXML
-    private TableView<?> tableId;
+    private TableView<Orrialde> tableId;
 
     @FXML
-    private TableColumn<?, URL> urlId;
+    private TableColumn<Orrialde, URL> urlId;
 
     @FXML
-    private TableColumn<?, String> httpServerId;
+    private TableColumn<Orrialde, String> httpServerId;
 
     @FXML
-    private TableColumn<?, String> countryId;
+    private TableColumn<Orrialde, String> countryId;
 
     @FXML
-    private TableColumn<?, String> emailId;
+    private TableColumn<Orrialde, String> emailId;
 
     @FXML
-    private TableColumn<?, String> ipId;
+    private TableColumn<Orrialde, String> ipId;
 
     @FXML
-    private TableColumn<?, String> cmsVersionId;
+    private TableColumn<Orrialde, String> cmsVersionId;
 
     @FXML
-    private TableColumn<?, Date> lastUpdateId;
+    private TableColumn<Orrialde, Date> lastUpdateId;
 
     private App app;
 
