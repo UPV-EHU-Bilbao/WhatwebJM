@@ -1,11 +1,10 @@
-package whatweb.controllers;
+package whatweb.controllers.db;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package whatweb.controllers;
+package whatweb.controllers.ui;
 
 import java.net.URL;
 import java.util.Date;

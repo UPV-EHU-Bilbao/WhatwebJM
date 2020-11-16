@@ -1,4 +1,4 @@
-package whatweb.controllers;
+package whatweb.controllers.ui;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

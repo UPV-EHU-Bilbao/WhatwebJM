@@ -7,11 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import whatweb.controllers.MainKud;
-import whatweb.controllers.WWKud;
+import whatweb.controllers.ui.MainKud;
+import whatweb.controllers.ui.WWKud;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import static javafx.application.Application.launch;
 
