@@ -55,6 +55,8 @@ public class WWKud {
     @FXML
     private ImageView travoltaId;
 
+
+
     @FXML
     void cmsClick(ActionEvent event) {
 
@@ -88,7 +90,6 @@ public class WWKud {
                     //txertatu();
                 });
             });
-
             taskThread.start();
         }
 
@@ -138,4 +139,6 @@ public class WWKud {
 
         return processes;
     }
+
+
 }
