@@ -1,6 +1,7 @@
 package whatweb.controllers.ui;
 
 import java.io.BufferedReader;
+import java.io.CharArrayWriter;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,13 +69,27 @@ public class WWKud {
     void eskaneatuClick(ActionEvent event) {
         if(urlId.getText().equals("")){
             travoltaId.setVisible(true);
-            Image i = travoltaId.getImage();
+            logId.setWrapText(true);
             logId.setText("Mesedez, sartu URL bat");
         }
         else{
             travoltaId.setVisible(false);
-            String newLine = System.getProperty("line.separator");
-            logId.setText( allProcesses().stream().collect(Collectors.joining(newLine)) );
+            logId.setWrapText(true);
+            logId.setText("Itxaron segundu bat mesedez");
+
+            Thread taskThread = new Thread(() -> {
+                String newLine = System.getProperty("line.separator");
+                final StringBuilder emaitza = new StringBuilder();
+                allProcesses().forEach( line -> {
+                    emaitza.append(line+newLine);
+                });
+                Platform.runLater(() -> {
+                    logId.setText(emaitza.toString());
+                    //txertatu();
+                });
+            });
+
+            taskThread.start();
         }
 
     }
@@ -83,6 +99,7 @@ public class WWKud {
 
     }
 
+    //hau ezin da erabili
     @FXML
     void wwClick(ActionEvent event) {
 
