@@ -59,6 +59,7 @@ public class WWKud {
 
     @FXML
     void cmsClick(ActionEvent event) {
+        app.hasieraKargatu();
 
     }
 

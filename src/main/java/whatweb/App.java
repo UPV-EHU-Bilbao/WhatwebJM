@@ -24,12 +24,16 @@ public class App extends Application {
     private MainKud mainKud;
     private WWKud whatWebKud;
 
+    private Scene mainScene;
+    private Scene whatWebUIScene;
+
 
     public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
         pantailakKargatu();
-
+        mainScene = new Scene(mainUI,899,732);
+        whatWebUIScene= new Scene(whatWebUI,899,732);
         hasieraKargatu();
 
     }
@@ -52,14 +56,14 @@ public class App extends Application {
 
     public void hasieraKargatu(){
         stage.setTitle("What Web");
-        stage.setScene(new Scene(mainUI,899,732));
+        stage.setScene(mainScene);
         stage.show();
     }
 
 
     public void whatWebErakutsi() {
         stage.setTitle("What Web");
-        stage.setScene(new Scene(whatWebUI,899,732));
+        stage.setScene(whatWebUIScene);
         stage.show();
     }
 }
