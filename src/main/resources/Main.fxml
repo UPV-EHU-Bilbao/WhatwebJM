@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.MainKud">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" stylesheets="@estiloa.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.MainKud">
    <children>
       <VBox layoutX="-8.0" layoutY="-6.0" prefHeight="744.0" prefWidth="269.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Pane prefHeight="134.0" prefWidth="269.0">
+            <Pane prefHeight="134.0" prefWidth="269.0" style="-fx-background-color: #3F2B63;">
                <children>
                   <Label layoutX="56.0" layoutY="75.0" text="WhatWeb" textFill="WHITE">
                      <font>
@@ -25,17 +25,17 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="cmsButtonId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#cmsClick" prefHeight="76.0" prefWidth="280.0" style="-fx-background-color: #9b59b6;" text="CMS" textFill="#fcfcfc">
+            <Button fx:id="cmsButtonId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#cmsClick" prefHeight="76.0" prefWidth="280.0" text="CMS" textFill="#fcfcfc">
                <graphic>
                   <FontAwesomeIconView fill="#f5f5f5" />
                </graphic>
             </Button>
-            <Button fx:id="serverId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#serverClick" prefHeight="76.0" prefWidth="280.0" style="-fx-background-color: #3F2B63;" text="Server" textFill="#fcfcfc">
+            <Button fx:id="serverId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#serverClick" prefHeight="76.0" prefWidth="280.0" text="Server" textFill="#fcfcfc">
                <graphic>
                   <FontAwesomeIconView fill="#f5f5f5" glyphName="server" text="" />
                </graphic>
             </Button>
-            <Button fx:id="whatWebId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#whatWebClick" prefHeight="76.0" prefWidth="280.0" style="-fx-background-color: #3F2B63;" text="WhatWeb" textFill="#fcfcfc">
+            <Button fx:id="whatWebId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#whatWebClick" prefHeight="76.0" prefWidth="280.0" text="WhatWeb" textFill="#fcfcfc">
                <graphic>
                   <FontAwesomeIconView fill="#f5f5f5" />
                </graphic>
@@ -44,11 +44,11 @@
       </VBox>
       <StackPane fx:id="stackPaneId" layoutX="259.0">
          <children>
-            <AnchorPane fx:id="cmsAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;" >
-                    <fx:include source="./cms.fxml" fx:id="cmsId"/>
+            <AnchorPane fx:id="cmsAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+                    <fx:include fx:id="cmsId" source="./cms.fxml" />
             </AnchorPane>
-            <AnchorPane fx:id="whatwebAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;" >
-               <fx:include source="./whatweb.fxml" fx:id="whatwebId"/>
+            <AnchorPane fx:id="whatwebAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+               <fx:include fx:id="whatwebId" source="./whatweb.fxml" />
             </AnchorPane>
          </children>
       </StackPane>

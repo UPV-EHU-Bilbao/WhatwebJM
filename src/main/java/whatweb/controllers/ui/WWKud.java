@@ -56,13 +56,6 @@ public class WWKud {
     private ImageView travoltaId;
 
 
-
-    @FXML
-    void cmsClick(ActionEvent event) {
-        app.hasieraKargatu();
-        app.hasieraKargatu();
-    }
-
     @FXML
     void dbGordeClick(ActionEvent event) {
 
@@ -95,18 +88,6 @@ public class WWKud {
         }
 
     }
-
-    @FXML
-    void serverClick(ActionEvent event) {
-
-    }
-
-    //hau ezin da erabili
-    @FXML
-    void wwClick(ActionEvent event) {
-
-    }
-
 
 
     @FXML
@@ -141,5 +122,7 @@ public class WWKud {
         return processes;
     }
 
-
+    public WWKud() {
+        System.out.println("WhatWebKud instantzia");
+    }
 }

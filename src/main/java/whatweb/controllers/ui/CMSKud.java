@@ -53,18 +53,12 @@ public class CMSKud {
 
     }
 
+    public CMSKud() {
+        System.out.println("CMSKud instantzia");
+    }
+
     @FXML
     void initialize() {
-        assert tableId != null : "fx:id=\"tableId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert urlId != null : "fx:id=\"urlId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert httpServerId != null : "fx:id=\"httpServerId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert countryID != null : "fx:id=\"countryID\" was not injected: check your FXML file 'cms.fxml'.";
-        assert emailId != null : "fx:id=\"emailId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert ipId != null : "fx:id=\"ipId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert cmsId != null : "fx:id=\"cmsId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert comboBoxId != null : "fx:id=\"comboBoxId\" was not injected: check your FXML file 'cms.fxml'.";
-        assert addURLID != null : "fx:id=\"addURLID\" was not injected: check your FXML file 'cms.fxml'.";
-        assert urlField != null : "fx:id=\"urlField\" was not injected: check your FXML file 'cms.fxml'.";
 
     }
 }

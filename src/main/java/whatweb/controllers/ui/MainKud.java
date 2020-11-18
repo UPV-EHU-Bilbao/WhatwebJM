@@ -48,6 +48,10 @@ public class MainKud {
     }
 
 
+    public MainKud() {
+        System.out.println("MainKud instantziatu");
+    }
+
     @FXML
     void initialize() {
        cmsAPid.toFront();
