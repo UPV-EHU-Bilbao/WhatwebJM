@@ -34,6 +34,7 @@ public class App extends Application {
         pantailakKargatu();
         mainScene = new Scene(mainUI,899,732);
         whatWebUIScene= new Scene(whatWebUI,899,732);
+
         hasieraKargatu();
 
     }

@@ -2,6 +2,7 @@ package whatweb.controllers.ui;
 
 import java.io.BufferedReader;
 import java.io.CharArrayWriter;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.LinkedList;
@@ -77,14 +78,13 @@ public class WWKud {
                 });
                 Platform.runLater(() -> {
                     logId.setText(emaitza.toString());
-                    txertatu();
                 });
             });
             taskThread.start();
         }
 
     }
-    public void txertatu(){ //DATU BASEAN GORDE SCANERRAREN DATUAK
+    public void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
     //irakurri insertak
         // konpondu queryak
         //datu basean gorde
@@ -113,22 +113,20 @@ public class WWKud {
             } else {
                 String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
                 p = Runtime.getRuntime().exec(exek);
-                p2= Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt");
-                //ejecutar insert
-                //insertak fitxategia bana banan irakurri eta konpondu eta datu basean gehitu
-                // fitxategia ezabatu
-
             }
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
             }
-            BufferedReader input2 =
-                    new BufferedReader(new InputStreamReader(p2.getInputStream()));
-            while ((line2 = input2.readLine()) != null) {
-                processes.add(line2);
+            BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
+                    "src/main/resources/insertak.txt"));
+            String sqlAgindu = reader.readLine();
+            while (sqlAgindu != null) {
+                txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                sqlAgindu = reader.readLine();
             }
+            Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
             input.close();
         } catch (Exception err) {
             err.printStackTrace();
