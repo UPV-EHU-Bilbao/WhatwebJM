@@ -48,6 +48,8 @@ public class App extends Application {
         whatWebUI = (Parent) loaderWhatWeb.load();
         whatWebKud = loaderWhatWeb.getController();
         whatWebKud.setMainApp(this);
+
+
     }
 
     public static void main(String[] args) {
@@ -66,4 +68,5 @@ public class App extends Application {
         stage.setScene(whatWebUIScene);
         stage.show();
     }
+
 }

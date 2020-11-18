@@ -1,24 +1,16 @@
 package whatweb.controllers.ui;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import whatweb.App;
-import whatweb.model.Orrialde;
 
 public class MainKud {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private TableColumn<Orrialde, String> cmsId;
+    private Button cmsButtonId;
 
     @FXML
     private Button serverId;
@@ -27,71 +19,37 @@ public class MainKud {
     private Button whatWebId;
 
     @FXML
-    private TextField urlField;
+    private StackPane stackPaneId;
 
     @FXML
-    private ComboBox<String> comboBoxId;
+    private AnchorPane cmsAPid;
 
     @FXML
-    private Button addURLId;
-
-    @FXML
-    private TableView<Orrialde> tableId;
-
-    @FXML
-    private TableColumn<Orrialde, URL> urlId;
-
-    @FXML
-    private TableColumn<Orrialde, String> httpServerId;
-
-    @FXML
-    private TableColumn<Orrialde, String> countryId;
-
-    @FXML
-    private TableColumn<Orrialde, String> emailId;
-
-    @FXML
-    private TableColumn<Orrialde, String> ipId;
-
-    @FXML
-    private TableColumn<Orrialde, String> cmsVersionId;
-
-    @FXML
-    private TableColumn<Orrialde, Date> lastUpdateId;
-
+    private AnchorPane whatwebAPid;
     private App app;
 
     @FXML
-    void addCick(ActionEvent event) { //URL berri bat gehitu
+    void cmsClick(ActionEvent event) {
+        cmsAPid.toFront();
+    }
+
+    @FXML
+    void serverClick(ActionEvent event) {
 
     }
 
     @FXML
-    void cmsClick(ActionEvent event) { //CMS botoia klikatu
-
+    void whatWebClick(ActionEvent event) {
+        whatwebAPid.toFront();
     }
 
-    @FXML
-    void serverClick(ActionEvent event) { //Zerbitzari botoia klikatu
-
-    }
-
-    @FXML
-    void whatWebClick(ActionEvent event) { //WhatWeb botoia klikatu
-        app.whatWebErakutsi();
-    }
-
-    @FXML
-    void urlGehituClick(ActionEvent event) {
-
+    public void setMainApp(App a) {
+        app = a;
     }
 
 
     @FXML
     void initialize() {
-    }
-
-    public void setMainApp(App m) {
-        app = m;
+       cmsAPid.toFront();
     }
 }
