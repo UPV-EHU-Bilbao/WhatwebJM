@@ -56,10 +56,6 @@ public class WWKud {
     private ImageView travoltaId;
 
 
-    @FXML
-    void dbGordeClick(ActionEvent event) {
-
-    }
 
     @FXML
     void eskaneatuClick(ActionEvent event) {
