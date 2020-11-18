@@ -81,11 +81,17 @@ public class WWKud {
                 });
                 Platform.runLater(() -> {
                     logId.setText(emaitza.toString());
-                    //txertatu();
+                    txertatu();
                 });
             });
             taskThread.start();
         }
+
+    }
+    public void txertatu(){ //DATU BASEAN GORDE SCANERRAREN DATUAK
+    //irakurri insertak
+        // konpondu queryak
+        //datu basean gorde
 
     }
 
@@ -102,17 +108,30 @@ public class WWKud {
         List<String> processes = new LinkedList<String>();
         try {
             String line;
+            String line2;
             Process p = null;
+            Process p2 = null;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 p = Runtime.getRuntime().exec
                         (System.getenv("windir") +"\\system32\\"+"tasklist.exe");
             } else {
-                p = Runtime.getRuntime().exec("whatweb --colour=never "+urlId.getText());
+                String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
+                p = Runtime.getRuntime().exec(exek);
+                p2= Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt");
+                //ejecutar insert
+                //insertak fitxategia bana banan irakurri eta konpondu eta datu basean gehitu
+                // fitxategia ezabatu
+
             }
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
+            }
+            BufferedReader input2 =
+                    new BufferedReader(new InputStreamReader(p2.getInputStream()));
+            while ((line2 = input2.readLine()) != null) {
+                processes.add(line2);
             }
             input.close();
         } catch (Exception err) {
