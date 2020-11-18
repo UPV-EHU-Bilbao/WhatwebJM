@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import whatweb.model.Orrialde;
 
 public class CMSKud {
 
@@ -19,28 +20,28 @@ public class CMSKud {
     private URL location;
 
     @FXML
-    private TableView<?> tableId;
+    private TableView<Orrialde> tableId;
 
     @FXML
-    private TableColumn<?, ?> urlId;
+    private TableColumn<Orrialde, URL> urlId;
 
     @FXML
-    private TableColumn<?, ?> httpServerId;
+    private TableColumn<Orrialde, String> httpServerId;
 
     @FXML
-    private TableColumn<?, ?> countryID;
+    private TableColumn<Orrialde, String> countryID;
 
     @FXML
-    private TableColumn<?, ?> emailId;
+    private TableColumn<Orrialde, String> emailId;
 
     @FXML
-    private TableColumn<?, ?> ipId;
+    private TableColumn<Orrialde, String> ipId;
 
     @FXML
-    private TableColumn<?, ?> cmsId;
+    private TableColumn<Orrialde, String> cmsId;
 
     @FXML
-    private ComboBox<?> comboBoxId;
+    private ComboBox<String> comboBoxId;
 
     @FXML
     private Button addURLID;
