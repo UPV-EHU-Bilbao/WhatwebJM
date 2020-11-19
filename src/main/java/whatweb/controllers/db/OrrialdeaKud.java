@@ -16,7 +16,7 @@ public class OrrialdeaKud {
 
     private static final OrrialdeaKud instantzia = new OrrialdeaKud();
 
-    private static OrrialdeaKud getInstantzia(){return instantzia;}
+    public static OrrialdeaKud getInstantzia(){return instantzia;}
 
     private DBKud dbkud = DBKud.getInstantzia();
 
@@ -42,6 +42,21 @@ public class OrrialdeaKud {
             Orrialde o = new Orrialde(cms,cmsVersion,url,httpServer,country,email,ip,lastUpdate);
             emaitza.add(o);
         }
+        return emaitza;
+    }
+
+    public String getInformazioa(String url) throws SQLException {
+        ResultSet rs1, rs2;
+        String targetidlortuquery= "select target_id from targets where target='"+url+"' and status=200";
+        rs1=dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
+
+        String stringkontatuquery ="select count(*) as zenbat from scans where target_id="+rs1.getInt("target_id");
+        rs2=dbkud.execSQL(stringkontatuquery); //honekin id berdinarekin(beraz, web berdinaren) zenbat string dauden lortzen dugu
+        int countString= rs2.getInt("zenbat");
+        //honen ondoren string horiek nola desberdingu ikusi behar dugu.
+
+
+        String emaitza="";
         return emaitza;
     }
 

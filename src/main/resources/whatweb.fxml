@@ -14,7 +14,7 @@
    <children>
       <Pane prefHeight="119.0" prefWidth="781.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Label layoutX="32.0" layoutY="25.0" text="Target, agressiom, http, auth, proxy, plugins, output, logging, performance" textFill="WHITE">
+            <Label layoutX="32.0" layoutY="25.0" text="Target, agression, http, auth, proxy, plugins, output, logging, performance" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

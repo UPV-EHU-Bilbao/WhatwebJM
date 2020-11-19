@@ -49,7 +49,7 @@
                </font>
             </FontAwesomeIconView>
             <ComboBox fx:id="comboBoxId" layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" style="-fx-border-color: #3F2B63;" />
-            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Add URL">
+            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Add URL" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="#fffdfd" />
                </graphic>
@@ -59,7 +59,7 @@
       </Pane>
       <Pane prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Label layoutX="90.0" layoutY="23.0" text="WordPRess, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
+            <Label layoutX="90.0" layoutY="23.0" text="WordPress, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
                <font>
                   <Font size="22.0" />
                </font>

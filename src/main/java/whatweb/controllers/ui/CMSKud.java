@@ -1,6 +1,7 @@
 package whatweb.controllers.ui;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.model.Orrialde;
 
 public class CMSKud {
@@ -50,7 +52,7 @@ public class CMSKud {
     private TextField urlField;
 
     @FXML
-    void urlGehituClick(ActionEvent event) {
+    void urlGehituClick(ActionEvent event) throws SQLException {
 
     }
 
