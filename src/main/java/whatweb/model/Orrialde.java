@@ -89,6 +89,7 @@ public class Orrialde {
         this.ip = ip;
         this.lastUpdate = lastUpdate;
     }
+    public Orrialde(){}
 
     private Date lastUpdate; //Zalantzan
 

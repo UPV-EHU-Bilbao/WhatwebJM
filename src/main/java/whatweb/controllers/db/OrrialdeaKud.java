@@ -45,19 +45,25 @@ public class OrrialdeaKud {
         return emaitza;
     }
 
-    public String getInformazioa(String url) throws SQLException {
+    public Orrialde getInformazioa(String url) throws SQLException {
         ResultSet rs1, rs2;
         String targetidlortuquery= "select target_id from targets where target='"+url+"' and status=200";
         rs1=dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
 
-        String stringkontatuquery ="select count(*) as zenbat from scans where target_id="+rs1.getInt("target_id");
-        rs2=dbkud.execSQL(stringkontatuquery); //honekin id berdinarekin(beraz, web berdinaren) zenbat string dauden lortzen dugu
-        int countString= rs2.getInt("zenbat");
-        //honen ondoren string horiek nola desberdingu ikusi behar dugu.
+        String query= "select string,version from scans where target_id="+rs1.getInt("target_id");
+        rs2=dbkud.execSQL(query);
+        while(rs1.next()){
+            String string= rs2.getString("string");
+            String version= rs2.getString("version");
+
+            Orrialde o= new Orrialde();
+            o.setCmsVersion(version); //baliteke hutsik egotea, beraz ez dakit hau egitea ideia ona den.
 
 
-        String emaitza="";
-        return emaitza;
+        }
+        //honen ondoren string horiek nola desberdindu ikusi behar dugu.
+
+        return o;
     }
 
 }
