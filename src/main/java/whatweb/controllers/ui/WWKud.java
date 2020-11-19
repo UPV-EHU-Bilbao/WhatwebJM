@@ -127,7 +127,7 @@ public class WWKud {
             int i = 0;
             boolean insertTarget= false;
             while (sqlAgindu != null) {
-                if(i==1){
+                if(i==1){ //whatweb-ek ez du ; jartzen sortutako bigarren insert-ean
                     sqlAgindu=sqlAgindu+";";
                 }
                 i++;
@@ -141,15 +141,6 @@ public class WWKud {
         }
 
         return processes;
-    }
-
-    private int lortuID() throws SQLException { //este metodo tendria que ir en otra clase
-        String query = "select target_id from targets order by target_id DESC limit 1";
-        ResultSet rs = DBKud.getInstantzia().execSQL(query);
-        if(rs.next()){
-            Integer id = rs.getInt("target_id") +1;
-            return id;
-        }else return 0;
     }
 
     public WWKud() {
