@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import whatweb.App;
+import whatweb.controllers.db.OrrialdeaKud;
 
 public class WWKud {
 
@@ -84,11 +85,12 @@ public class WWKud {
         }
 
     }
-    public void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
+    private void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
     //irakurri insertak
         // konpondu queryak
         //datu basean gorde
-
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        orkud.txertatuDatuak(agindu.replace(" IGNORE", " OR IGNORE"));
     }
 
 
