@@ -5,6 +5,8 @@ import java.io.CharArrayWriter;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import whatweb.App;
+import whatweb.controllers.db.DBKud;
 
 public class WWKud {
 
@@ -85,10 +88,9 @@ public class WWKud {
 
     }
     public void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
-    //irakurri insertak
-        // konpondu queryak
-        //datu basean gorde
-
+        DBKud dbkud = DBKud.getInstantzia();
+        //dbkud.execSQL(agindu); //ya funciona exeqSQL
+        System.out.println(agindu);
     }
 
 
@@ -122,8 +124,15 @@ public class WWKud {
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
                     "src/main/resources/insertak.txt"));
             String sqlAgindu = reader.readLine();
+            int id = lortuID();
+            boolean insertTarget= true;
             while (sqlAgindu != null) {
-                txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                if(insertTarget){ //lehenengo linea denez, target-aren insert a solik baten egingo da eta lehen komandoa izango da
+                    insertTarget=false;
+                    txertatu(sqlAgindu.replace("IGNORE ", "").replace("targets (status,", "targets (target_id, status,").replace("VALUES ('","VALUES ("+id+",'")); //linea bakoitza datu baseak exekutatzen dugu
+                }else{
+                    txertatu(sqlAgindu);
+                }
                 sqlAgindu = reader.readLine();
             }
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
@@ -133,6 +142,15 @@ public class WWKud {
         }
 
         return processes;
+    }
+
+    private int lortuID() throws SQLException { //este metodo tendria que ir en otra clase
+        String query = "select target_id from targets order by target_id DESC limit 1";
+        ResultSet rs = DBKud.getInstantzia().execSQL(query);
+        if(rs.next()){
+            Integer id = rs.getInt("target_id") +1;
+            return id;
+        }else return 0;
     }
 
     public WWKud() {
