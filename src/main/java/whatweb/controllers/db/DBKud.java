@@ -1,12 +1,7 @@
 package whatweb.controllers.db;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Connection;
-import java.sql.Statement;
+import java.io.*;
+import java.sql.*;
 import java.util.Properties;
 
 public class DBKud {
@@ -103,6 +98,20 @@ public class DBKud {
         }
 
         return rs;
+    }
+
+    public void insertPluginGuztiak() throws IOException { //no funciona el sqlexec asi que lo que he hecho ha sido printear esto y luego pegarlo en el programa para gestionar sqlite
+        //importante: esto solo me prepara los insert de los plugins, el create table y eso lo he hecho a mano que solo eran 4 lineas
+        BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
+                "algo.sql"));
+        String sqlAgindu = reader.readLine();
+        int i=0;
+        while (sqlAgindu != null) {
+            System.out.println((sqlAgindu.replace("VALUES ('","VALUES ("+i+",'").replace("name","plugin_id,name")));
+            i++;
+            sqlAgindu = reader.readLine();
+        }
+        //el archivo algo.sql habria que borrarlo pero lo he dejado por si quereis ver como se printea el metodo
     }
 
 

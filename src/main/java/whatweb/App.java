@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import whatweb.controllers.db.DBKud;
 import whatweb.controllers.ui.MainKud;
 import whatweb.controllers.ui.WWKud;
 
@@ -34,7 +35,7 @@ public class App extends Application {
         pantailakKargatu();
         mainScene = new Scene(mainUI,899,732);
         whatWebUIScene= new Scene(whatWebUI,899,732);
-
+        DBKud dbkud = DBKud.getInstantzia();
         hasieraKargatu();
 
     }
