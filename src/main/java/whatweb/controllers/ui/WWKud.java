@@ -89,8 +89,8 @@ public class WWKud {
     }
     public void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
         DBKud dbkud = DBKud.getInstantzia();
-        //dbkud.execSQL(agindu); //ya funciona exeqSQL
-        System.out.println(agindu);
+        dbkud.execSQL(agindu); //ya funciona exeqSQL
+
     }
 
 
@@ -124,15 +124,14 @@ public class WWKud {
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
                     "src/main/resources/insertak.txt"));
             String sqlAgindu = reader.readLine();
-            int id = lortuID();
-            boolean insertTarget= true;
+            int i = 0;
+            boolean insertTarget= false;
             while (sqlAgindu != null) {
-                if(insertTarget){ //lehenengo linea denez, target-aren insert a solik baten egingo da eta lehen komandoa izango da
-                    insertTarget=false;
-                    txertatu(sqlAgindu.replace("IGNORE ", "").replace("targets (status,", "targets (target_id, status,").replace("VALUES ('","VALUES ("+id+",'")); //linea bakoitza datu baseak exekutatzen dugu
-                }else{
-                    txertatu(sqlAgindu);
+                if(i==1){
+                    sqlAgindu=sqlAgindu+";";
                 }
+                i++;
+                txertatu(sqlAgindu.replace("IGNORE ", "")); //linea bakoitza datu baseak exekutatzen dugu
                 sqlAgindu = reader.readLine();
             }
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
