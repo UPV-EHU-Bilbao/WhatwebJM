@@ -103,7 +103,7 @@ public class DBKud {
     public void insertPluginGuztiak() throws IOException { //no funciona el sqlexec asi que lo que he hecho ha sido printear esto y luego pegarlo en el programa para gestionar sqlite
         //importante: esto solo me prepara los insert de los plugins, el create table y eso lo he hecho a mano que solo eran 4 lineas
         BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                "algo.sql"));
+                "algo.sql")); //algo.sql es el archivo que consigues mediante whatweb, solo que sin las primeras lineas (los create)
         String sqlAgindu = reader.readLine();
         int i=0;
         while (sqlAgindu != null) {
@@ -111,7 +111,6 @@ public class DBKud {
             i++;
             sqlAgindu = reader.readLine();
         }
-        //el archivo algo.sql habria que borrarlo pero lo he dejado por si quereis ver como se printea el metodo
     }
 
 
