@@ -29,7 +29,7 @@ public class OrrialdeaKud {
         List<Orrialde> emaitza = new ArrayList<>();
         ResultSet rs = dbkud.execSQL(eskaera);
         while (rs.next()) {
-            //Datu basean atributu bakoitzak duen izena jarri
+            //Datu basean atributu bakoitzak duen izena jarri (Ez dakit ondo dauden)
             String cms = rs.getString("");
             String cmsVersion = rs.getString("");
             URL url = rs.getURL("");
