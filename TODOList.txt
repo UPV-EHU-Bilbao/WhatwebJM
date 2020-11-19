@@ -1,3 +1,3 @@
-- Eskaneatutako elementuak datu basean gorde
 - Taula datu basean dauden elementuekin bete
 - Taulan "+" ikurra geitu eta kudeatu
+- kudeatzaileen instantziena konpondu

@@ -58,6 +58,7 @@ public class CMSKud {
         System.out.println("CMSKud instantzia");
     }
 
+
     @FXML
     void initialize() {
 
