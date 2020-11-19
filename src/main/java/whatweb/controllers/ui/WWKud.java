@@ -109,7 +109,7 @@ public class WWKud {
             Process p2 = null;
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 p = Runtime.getRuntime().exec
-                        (System.getenv("windir") +"\\system32\\"+"tasklist.exe");
+                        (System.getenv("windir") +"\\system32\\"+"wls whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText());
             } else {
                 String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
                 p = Runtime.getRuntime().exec(exek);
