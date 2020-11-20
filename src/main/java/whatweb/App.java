@@ -8,12 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import whatweb.controllers.db.DBKud;
+import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.controllers.ui.CMSKud;
 import whatweb.controllers.ui.MainKud;
 import whatweb.controllers.ui.WWKud;
 import whatweb.model.Orrialde;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.SQLException;
 import java.util.List;
 
 import static javafx.application.Application.launch;
@@ -38,9 +41,9 @@ public class App extends Application {
 
         stage = primaryStage;
         pantailakKargatu();
+        setLista(); //ezin da pantailakKargatu baino lehen egon
         mainScene = new Scene(mainUI,899,732);
         whatWebUIScene= new Scene(whatWebUI,899,732);
-        DBKud dbkud = DBKud.getInstantzia();
         hasieraKargatu();
 
     }
@@ -55,7 +58,6 @@ public class App extends Application {
         whatWebUI = (Parent) loaderWhatWeb.load();
         whatWebKud = loaderWhatWeb.getController();
         whatWebKud.setMainApp(this);
-
 
         FXMLLoader loaderCMS = new FXMLLoader(getClass().getResource("/cms.fxml"));
         cmsUi = (Parent) loaderCMS.load();
@@ -82,7 +84,9 @@ public class App extends Application {
         stage.show();
     }
 
-    public void setLista(List<Orrialde> list) {
-
+    public void setLista() throws MalformedURLException, SQLException {
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
+        cmsKud.setLista(orrialdeak);
     }
 }

@@ -35,7 +35,7 @@ public class OrrialdeaKud {
         Orrialde o = new Orrialde();
         String query = "select string from scans where (string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%') and target_id="+id;
         rs2 = dbkud.execSQL(query);
-        if(rs2.next()){
+        if(rs2.next()){  //badaude cms-rik erabiltzen ez duten orrialdeak
             String[] cms = rs2.getString("string").split(" ");
             o.setCms(cms[0]);
             o.setCmsVersion(cms[1]);

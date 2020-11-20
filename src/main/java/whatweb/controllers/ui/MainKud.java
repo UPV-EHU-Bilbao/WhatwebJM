@@ -63,12 +63,6 @@ public class MainKud {
     @FXML
     void initialize() throws SQLException, MalformedURLException {
        cmsAPid.toFront();
-        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
-        List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
-        orrialdeak=orkud.lortuOrrialdeak(); //orrialdeak ditugu
     }
 
-    private void setLista(List<Orrialde> list){
-        app.setLista(list);
-    }
 }
