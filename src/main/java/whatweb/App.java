@@ -8,10 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import whatweb.controllers.db.DBKud;
+import whatweb.controllers.ui.CMSKud;
 import whatweb.controllers.ui.MainKud;
 import whatweb.controllers.ui.WWKud;
+import whatweb.model.Orrialde;
 
 import java.io.IOException;
+import java.util.List;
 
 import static javafx.application.Application.launch;
 
@@ -19,11 +22,13 @@ public class App extends Application {
 
     private Parent mainUI;
     private Parent whatWebUI;
+    private Parent cmsUi;
 
     private Stage stage;
 
     private MainKud mainKud;
     private WWKud whatWebKud;
+    private CMSKud cmsKud;
 
     private Scene mainScene;
     private Scene whatWebUIScene;
@@ -52,6 +57,12 @@ public class App extends Application {
         whatWebKud.setMainApp(this);
 
 
+        FXMLLoader loaderCMS = new FXMLLoader(getClass().getResource("/cms.fxml"));
+        cmsUi = (Parent) loaderCMS.load();
+        cmsKud = loaderCMS.getController();
+        cmsKud.setMainApp(this);
+
+
     }
 
     public static void main(String[] args) {
@@ -71,4 +82,7 @@ public class App extends Application {
         stage.show();
     }
 
+    public void setLista(List<Orrialde> list) {
+
+    }
 }

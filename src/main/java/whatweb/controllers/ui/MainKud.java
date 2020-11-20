@@ -65,6 +65,9 @@ public class MainKud {
         OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
         List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
         orrialdeak=orkud.lortuOrrialdeak(); //orrialdeak ditugu
-        //hurrengoa taulan printeatzea da
+    }
+
+    private void setLista(List<Orrialde> list){
+        app.setLista(list);
     }
 }
