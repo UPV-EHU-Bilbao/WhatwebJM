@@ -63,6 +63,9 @@ public class CMSKud {
 
     @FXML
     void initialize() {
-
+        emailId.setVisible(false);
+        ipId.setVisible(false);
+        countryID.setVisible(false);
+        httpServerId.setVisible(false);
     }
 }

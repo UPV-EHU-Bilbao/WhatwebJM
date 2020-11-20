@@ -6,6 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import whatweb.App;
+import whatweb.controllers.db.OrrialdeaKud;
+import whatweb.model.Orrialde;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainKud {
 
@@ -29,8 +35,12 @@ public class MainKud {
     private App app;
 
     @FXML
-    void cmsClick(ActionEvent event) {
+    void cmsClick(ActionEvent event) throws SQLException {
         cmsAPid.toFront();
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
+        orrialdeak=orkud.lortuOrrialdeak(); //orrialdeak ditugu
+        //hurrengoa taulan printeatzea da
     }
 
     @FXML
