@@ -9,6 +9,7 @@ import whatweb.App;
 import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.model.Orrialde;
 
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class MainKud {
     }
 
     @FXML
-    void initialize() throws SQLException {
+    void initialize() throws SQLException, MalformedURLException {
        cmsAPid.toFront();
         OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
         List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
