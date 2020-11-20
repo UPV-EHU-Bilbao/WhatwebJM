@@ -35,12 +35,9 @@ public class MainKud {
     private App app;
 
     @FXML
-    void cmsClick(ActionEvent event) throws SQLException {
+    void cmsClick(ActionEvent event) {
         cmsAPid.toFront();
-        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
-        List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
-        orrialdeak=orkud.lortuOrrialdeak(); //orrialdeak ditugu
-        //hurrengoa taulan printeatzea da
+
     }
 
     @FXML
@@ -63,7 +60,11 @@ public class MainKud {
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
        cmsAPid.toFront();
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        List<Orrialde> orrialdeak= new ArrayList<Orrialde>();
+        orrialdeak=orkud.lortuOrrialdeak(); //orrialdeak ditugu
+        //hurrengoa taulan printeatzea da
     }
 }
