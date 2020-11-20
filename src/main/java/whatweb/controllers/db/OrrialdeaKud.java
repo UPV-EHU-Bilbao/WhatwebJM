@@ -42,7 +42,7 @@ public class OrrialdeaKud {
         return o;
     }
 
-    public List<Orrialde> lortuOrrialdeak() throws SQLException {
+    public List<Orrialde> lortuOrrialdeak() throws SQLException, MalformedURLException {
         String targetlortu = "select target from targets where status=200";
         ResultSet rs;
         rs=dbkud.execSQL(targetlortu);
