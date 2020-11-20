@@ -41,7 +41,6 @@ public class App extends Application {
 
         stage = primaryStage;
         pantailakKargatu();
-        setLista(); //ezin da pantailakKargatu baino lehen egon
         mainScene = new Scene(mainUI,899,732);
         whatWebUIScene= new Scene(whatWebUI,899,732);
         hasieraKargatu();
@@ -84,9 +83,5 @@ public class App extends Application {
         stage.show();
     }
 
-    public void setLista() throws MalformedURLException, SQLException {
-        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
-        List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
-        cmsKud.setLista(orrialdeak);
-    }
+
 }

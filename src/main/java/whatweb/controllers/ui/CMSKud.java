@@ -52,6 +52,10 @@ public class CMSKud {
     private TableColumn<Orrialde, String> cmsId;
 
     @FXML
+    private TableColumn<Orrialde, String> cmsVersionId;
+
+
+    @FXML
     private ComboBox<String> comboBoxId;
 
     @FXML
@@ -80,6 +84,14 @@ public class CMSKud {
         countryID.setVisible(false);
         httpServerId.setVisible(false);
         cmsId.setCellValueFactory(new PropertyValueFactory<>("cms"));
+        urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
+        cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
+
+
+
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
+        setLista(orrialdeak);
 
     }
 
