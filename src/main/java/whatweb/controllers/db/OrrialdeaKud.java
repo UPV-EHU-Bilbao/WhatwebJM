@@ -3,6 +3,7 @@ package whatweb.controllers.db;
 
 import whatweb.model.Orrialde;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Array;
 import java.sql.ResultSet;
@@ -26,14 +27,16 @@ public class OrrialdeaKud {
     private OrrialdeaKud() {
     }
 
-    public Orrialde getInformazioa(String url) throws SQLException {
+    public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException {
         ResultSet rs1, rs2;
         String targetidlortuquery = "select target_id from targets where target='" + url + "' and status=200";
         rs1 = dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
+        Integer id = rs1.getInt("target_id");
         Orrialde o = new Orrialde();
-        String query = "select string from scans where (string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%')";
+        String query = "select string from scans where (string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%') and target_id="+id;
         rs2 = dbkud.execSQL(query);
         String[] cms = rs2.getString("string").split(" ");
+        o.setUrl(new URL(url));
         o.setCms(cms[0]);
         o.setCmsVersion(cms[1]);
         return o;
