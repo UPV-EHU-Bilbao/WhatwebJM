@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import whatweb.App;
 import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.model.Orrialde;
@@ -54,6 +55,9 @@ public class CMSKud {
     @FXML
     private TextField urlField;
 
+    @FXML
+    private TableColumn<Orrialde, String> cmsVersionId;
+
     private List<Orrialde> lista = new ArrayList<>();
     private App app;
 
@@ -62,17 +66,23 @@ public class CMSKud {
 
     }
 
-    public CMSKud() {
-        System.out.println("CMSKud instantzia");
-    }
-
 
     @FXML
     void initialize() {
+        //Zutabeak ez erakutsi
         emailId.setVisible(false);
         ipId.setVisible(false);
         countryID.setVisible(false);
         httpServerId.setVisible(false);
+
+        //Errenkadak balioak hartu
+        urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
+        httpServerId.setCellValueFactory(new PropertyValueFactory<>("httpServer"));
+        countryID.setCellValueFactory(new PropertyValueFactory<>("country"));
+        emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ipId.setCellValueFactory(new PropertyValueFactory<>("ip"));
+        cmsId.setCellValueFactory(new PropertyValueFactory<>("cms"));
+        cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
 
 
     }
