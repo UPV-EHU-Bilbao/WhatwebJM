@@ -60,4 +60,9 @@ public class OrrialdeaKud {
         }
         return emaitza;
     }
+
+    public void ezabatuHelbidea(URL helbidea) {
+        String eskaera = "delete from where ";
+        dbkud.execSQL(eskaera);
+    }
 }

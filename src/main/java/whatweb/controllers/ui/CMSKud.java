@@ -12,12 +12,10 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import whatweb.App;
 import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.model.Orrialde;
@@ -64,6 +62,9 @@ public class CMSKud {
     @FXML
     private TextField urlField;
 
+    @FXML
+    private TableColumn<Orrialde, String> ezabatuId;
+
     private ObservableList<Orrialde> lista;
     private App app;
 
@@ -87,12 +88,31 @@ public class CMSKud {
         urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
         cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
 
+        Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 
+        ezabatuId.setCellFactory(col -> {
+            TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(col);
+
+            cell.setOnMouseClicked(event -> {
+                if (! cell.isEmpty()) {
+                    URL helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
+                    ezabatuHelbidea(helbidea);
+
+                }
+            });
+
+            return cell ;
+        });
 
         OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
         List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
         setLista(orrialdeak);
 
+    }
+
+    private void ezabatuHelbidea(URL helbidea) {
+        OrrialdeaKud ok = OrrialdeaKud.getInstantzia();
+        ok.ezabatuHelbidea(helbidea);
     }
 
     public void setLista(List<Orrialde> plista) {
