@@ -76,12 +76,10 @@ public class App extends Application {
         stage.show();
     }
 
-
-    public void whatWebErakutsi() {
-        stage.setTitle("What Web");
-        stage.setScene(whatWebUIScene);
-        stage.show();
+    public void cmsTablaEguneratu() throws MalformedURLException, SQLException {
+        cmsKud.kargatu();
     }
+
 
 
 }

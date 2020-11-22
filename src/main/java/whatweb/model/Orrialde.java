@@ -15,6 +15,7 @@ public class Orrialde {
     private String email;
     private String ip;
 
+
     public void setCms(String cms) {
         this.cms = cms;
     }
@@ -88,8 +89,12 @@ public class Orrialde {
         this.email = email;
         this.ip = ip;
         this.lastUpdate = lastUpdate;
+
     }
-    public Orrialde(){}
+    public Orrialde(){
+
+
+    }
 
     private Date lastUpdate; //Zalantzan
 

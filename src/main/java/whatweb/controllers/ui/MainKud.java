@@ -36,7 +36,8 @@ public class MainKud {
     private App app;
 
     @FXML
-    void cmsClick(ActionEvent event) {
+    void cmsClick(ActionEvent event) throws MalformedURLException, SQLException, InterruptedException {
+        app.cmsTablaEguneratu();
         cmsAPid.toFront();
 
     }

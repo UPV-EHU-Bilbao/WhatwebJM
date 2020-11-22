@@ -4,6 +4,7 @@ package whatweb.controllers.db;
 import whatweb.model.Orrialde;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Array;
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ public class OrrialdeaKud {
     private OrrialdeaKud() {
     }
 
-    public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException {
+    public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException{
         ResultSet rs1, rs2;
         String targetidlortuquery = "select target_id from targets where target='" + url + "' and status=200";
         rs1 = dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
@@ -48,7 +49,7 @@ public class OrrialdeaKud {
         return o;
     }
 
-    public List<Orrialde> lortuOrrialdeak() throws SQLException, MalformedURLException {
+    public List<Orrialde> lortuOrrialdeak() throws SQLException, MalformedURLException{
         String targetlortu = "select target from targets where status=200";
         ResultSet rs;
         rs=dbkud.execSQL(targetlortu);
@@ -61,8 +62,14 @@ public class OrrialdeaKud {
         return emaitza;
     }
 
-    public void ezabatuHelbidea(URL helbidea) {
-        String eskaera = "delete from where ";
-        dbkud.execSQL(eskaera);
+    public void ezabatuHelbidea(URL helbidea) throws SQLException {
+        String eskaera = "select target_id from targets where target =  '"+helbidea.toString()+"'";
+        ResultSet rs = dbkud.execSQL(eskaera);
+        Integer targetId = rs.getInt("target_id");
+        String delete1= "delete from scans where target_id = "+targetId;
+        String delete2= "delete from targets where target_id = "+targetId;
+        dbkud.execSQL(delete1);
+        dbkud.execSQL(delete2);
+
     }
 }

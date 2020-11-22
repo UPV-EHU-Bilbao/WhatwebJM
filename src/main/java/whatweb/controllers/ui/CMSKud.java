@@ -69,8 +69,8 @@ public class CMSKud {
     private App app;
 
     @FXML
-    void urlGehituClick(ActionEvent event) throws SQLException {
-
+    void urlGehituClick(ActionEvent event) throws SQLException, MalformedURLException {
+        kargatu();
     }
 
     public CMSKud() {
@@ -96,7 +96,12 @@ public class CMSKud {
             cell.setOnMouseClicked(event -> {
                 if (! cell.isEmpty()) {
                     URL helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
-                    ezabatuHelbidea(helbidea);
+                    try {
+                        ezabatuHelbidea(helbidea);
+                        kargatu();
+                    } catch (SQLException | MalformedURLException throwables) {
+                        throwables.printStackTrace();
+                    }
 
                 }
             });
@@ -104,13 +109,19 @@ public class CMSKud {
             return cell ;
         });
 
+        kargatu();
+
+    }
+
+    public void kargatu() throws MalformedURLException, SQLException {
+        tableId.getItems().clear();
         OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
         List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
         setLista(orrialdeak);
 
     }
 
-    private void ezabatuHelbidea(URL helbidea) {
+    private void ezabatuHelbidea(URL helbidea) throws SQLException {
         OrrialdeaKud ok = OrrialdeaKud.getInstantzia();
         ok.ezabatuHelbidea(helbidea);
     }
