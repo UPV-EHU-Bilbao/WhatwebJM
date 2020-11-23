@@ -80,7 +80,7 @@ public class OrrialdeaKud {
     }
 
     public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException {
-            String targetlortu = "select target,string from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
+        String targetlortu = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
         ResultSet rs;
         rs=dbkud.execSQL(targetlortu);
 

@@ -2,6 +2,7 @@ package whatweb.controllers.ui;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -69,6 +70,9 @@ public class CMSKud {
     @FXML
     private Button bilatuId;
 
+    @FXML
+    private TableColumn<Orrialde, Date> lastUpdateId;
+
     private ObservableList<Orrialde> lista;
     private App app;
     private OrrialdeaKud ok = OrrialdeaKud.getInstantzia();
@@ -91,10 +95,12 @@ public class CMSKud {
         ipId.setVisible(false);
         countryID.setVisible(false);
         httpServerId.setVisible(false);
+
         cmsId.setCellValueFactory(new PropertyValueFactory<>("cms"));
         urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
         cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
         ezabatuId.setCellValueFactory(new PropertyValueFactory<>("ezabatu"));
+        lastUpdateId.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
 
         Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 

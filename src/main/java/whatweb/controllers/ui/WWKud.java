@@ -130,6 +130,8 @@ public class WWKud {
                 txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                 sqlAgindu = reader.readLine();
             }
+            String data = "update targets set lastUpdate=DATE() where target='"+urlId.getText()+"';";
+            orkud.txertatuDatuak(data);
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
             input.close();
         } catch (Exception err) {

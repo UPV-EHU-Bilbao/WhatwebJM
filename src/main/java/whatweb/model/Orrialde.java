@@ -15,7 +15,11 @@ public class Orrialde {
     private String email;
     private String ip;
     private String ezabatu = "ezabatu";
+    private Date lastUpdate;
 
+    public void setEzabatu(String ezabatu) {
+        this.ezabatu = ezabatu;
+    }
 
     public void setCms(String cms) {
         this.cms = cms;
@@ -98,9 +102,7 @@ public class Orrialde {
     }
     public Orrialde(){
 
-
     }
 
-    private Date lastUpdate; //Zalantzan
 
 }
