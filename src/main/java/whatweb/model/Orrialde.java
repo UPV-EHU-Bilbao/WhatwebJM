@@ -14,6 +14,7 @@ public class Orrialde {
     private String country;
     private String email;
     private String ip;
+    private String ezabatu = "ezabatu";
 
 
     public void setCms(String cms) {
@@ -79,6 +80,8 @@ public class Orrialde {
     public Date getLastUpdate() {
         return lastUpdate;
     }
+
+    public String getEzabatu(){return ezabatu;}
 
     public Orrialde(String cms, String cmsVersion, URL url, String httpServer, String country, String email, String ip, Date lastUpdate) {
         this.cms = cms;

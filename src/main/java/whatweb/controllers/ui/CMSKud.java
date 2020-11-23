@@ -87,6 +87,7 @@ public class CMSKud {
         cmsId.setCellValueFactory(new PropertyValueFactory<>("cms"));
         urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
         cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
+        ezabatuId.setCellValueFactory(new PropertyValueFactory<>("ezabatu"));
 
         Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 
