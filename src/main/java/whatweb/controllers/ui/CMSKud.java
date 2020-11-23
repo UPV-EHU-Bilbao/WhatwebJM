@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -65,9 +66,13 @@ public class CMSKud {
     @FXML
     private TableColumn<Orrialde, String> ezabatuId;
 
+    @FXML
+    private Button bilatuId;
+
     private ObservableList<Orrialde> lista;
     private App app;
     private OrrialdeaKud ok = OrrialdeaKud.getInstantzia();
+    private List<Orrialde> orrialdeak;
 
 
     @FXML
@@ -118,8 +123,7 @@ public class CMSKud {
 
     public void kargatu() throws MalformedURLException, SQLException {
         tableId.getItems().clear();
-        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
-        List<Orrialde> orrialdeak= orkud.lortuOrrialdeak(); //orrialdeak ditugu
+        orrialdeak= ok.lortuOrrialdeak(); //orrialdeak ditugu
         setLista(orrialdeak);
 
     }
@@ -132,6 +136,16 @@ public class CMSKud {
         lista= FXCollections.observableArrayList();
         lista.addAll(plista);
         tableId.setItems(lista);
+
+    }
+
+    @FXML
+    void bilatuClick(ActionEvent event) throws MalformedURLException, SQLException {
+        String zerBilatu = comboBoxId.getValue();
+        String bilaketa = urlField.getText();
+        orrialdeak.clear();
+        orrialdeak = ok.bilatuOrrialdeak(zerBilatu,bilaketa);
+        setLista(orrialdeak);
 
     }
 

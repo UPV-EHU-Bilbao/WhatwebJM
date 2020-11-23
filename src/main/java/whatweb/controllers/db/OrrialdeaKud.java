@@ -43,8 +43,8 @@ public class OrrialdeaKud {
             o.setCms(cms[0]);
             o.setCmsVersion(cms[1]);
         }else{
-            o.setCms("");
-            o.setCmsVersion("");
+            o.setCms("Ez da zehazten");
+            o.setCmsVersion("-");
         }
         o.setUrl(new URL(url));
 
@@ -77,5 +77,18 @@ public class OrrialdeaKud {
 
     public void txertatuDatuak(String replace) {
         dbkud.execSQL(replace);
+    }
+
+    public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException {
+            String targetlortu = "select target,string from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
+        ResultSet rs;
+        rs=dbkud.execSQL(targetlortu);
+
+        List<Orrialde> emaitza = new ArrayList<Orrialde>();
+        while(rs.next()){
+            String url= rs.getString("target");
+            emaitza.add(getInformazioa(url));
+        }
+        return emaitza;
     }
 }

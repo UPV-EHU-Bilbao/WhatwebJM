@@ -50,15 +50,8 @@
                </font>
             </FontAwesomeIconView>
             <ComboBox fx:id="comboBoxId" layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" style="-fx-border-color: #3F2B63;" />
-            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Eguneratu taula" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="#fffdfd" glyphName="REFRESH" />
-               </graphic>
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
             <TextField fx:id="urlField" layoutX="80.0" layoutY="24.0" prefHeight="28.0" prefWidth="287.0" style="-fx-border-color: #3F2B63;" />
+            <Button fx:id="bilatuId" layoutX="542.0" layoutY="24.0" mnemonicParsing="false" onAction="#bilatuClick" text="Bilatu" />
          </children>
       </Pane>
       <Pane prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;">
@@ -75,5 +68,13 @@
             </Label>
          </children>
       </Pane>
+      <Button fx:id="addURLID" layoutX="40.0" layoutY="253.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Eguneratu taula" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="#fffdfd" glyphName="REFRESH" />
+         </graphic>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
