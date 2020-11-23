@@ -1,6 +1,7 @@
 package whatweb.controllers.db;
 
 
+import whatweb.controllers.db.DBKud;
 import whatweb.model.Orrialde;
 
 import java.net.MalformedURLException;
@@ -27,6 +28,7 @@ public class OrrialdeaKud {
 
     private OrrialdeaKud() {
     }
+
 
     public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException{
         ResultSet rs1, rs2;
@@ -71,5 +73,9 @@ public class OrrialdeaKud {
         dbkud.execSQL(delete1);
         dbkud.execSQL(delete2);
 
+    }
+
+    public void txertatuDatuak(String replace) {
+        dbkud.execSQL(replace);
     }
 }
