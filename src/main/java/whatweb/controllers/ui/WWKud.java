@@ -111,13 +111,14 @@ public class WWKud {
             String line2;
             Process p = null;
             Process p2 = null;
+            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
+
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
-                p = Runtime.getRuntime().exec
-                        (System.getenv("windir") +"\\system32\\"+"tasklist.exe");
-            } else {
-                String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
-                p = Runtime.getRuntime().exec(exek);
+                exek = "wsl"+exek;
             }
+
+            p = Runtime.getRuntime().exec(exek);
+
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
