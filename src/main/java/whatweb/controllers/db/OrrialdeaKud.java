@@ -16,7 +16,7 @@ public class OrrialdeaKud {
 
     private static final OrrialdeaKud instantzia = new OrrialdeaKud();
 
-    public static OrrialdeaKud getInstantzia(){return instantzia;}
+    private static OrrialdeaKud getInstantzia(){return instantzia;}
 
     private DBKud dbkud = DBKud.getInstantzia();
 
@@ -43,11 +43,6 @@ public class OrrialdeaKud {
             emaitza.add(o);
         }
         return emaitza;
-    }
-
-    public void txertatuDatuak(String query){
-        dbkud.execSQL(query);
-
     }
 
 }

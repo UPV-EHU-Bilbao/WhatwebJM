@@ -14,7 +14,7 @@
    <children>
       <Pane prefHeight="119.0" prefWidth="781.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Label layoutX="32.0" layoutY="25.0" text="Target, agressiom, http, auth, proxy, plugins, output, logging, performance" textFill="WHITE">
+            <Label layoutX="32.0" layoutY="25.0" text="Target, agression, http, auth, proxy, plugins, output, logging, performance" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -40,7 +40,7 @@
       <Button fx:id="eskaneatuId" layoutX="274.0" layoutY="601.0" mnemonicParsing="false" onAction="#eskaneatuClick" text="Eskaneatu eta gorde" textFill="WHITE" />
       <ImageView fx:id="travoltaId" fitHeight="289.0" fitWidth="330.0" layoutX="242.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Descargas/defe3.jpeg" />
+            <Image url="defe3.jpeg" />
          </image>
       </ImageView>
    </children>

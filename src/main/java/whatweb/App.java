@@ -7,10 +7,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import whatweb.controllers.db.DBKud;
+import whatweb.controllers.db.OrrialdeaKud;
+import whatweb.controllers.ui.CMSKud;
 import whatweb.controllers.ui.MainKud;
 import whatweb.controllers.ui.WWKud;
+import whatweb.model.Orrialde;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.SQLException;
+import java.util.List;
 
 import static javafx.application.Application.launch;
 
@@ -18,11 +25,13 @@ public class App extends Application {
 
     private Parent mainUI;
     private Parent whatWebUI;
+    private Parent cmsUi;
 
     private Stage stage;
 
     private MainKud mainKud;
     private WWKud whatWebKud;
+    private CMSKud cmsKud;
 
     private Scene mainScene;
     private Scene whatWebUIScene;
@@ -34,7 +43,6 @@ public class App extends Application {
         pantailakKargatu();
         mainScene = new Scene(mainUI,899,732);
         whatWebUIScene= new Scene(whatWebUI,899,732);
-
         hasieraKargatu();
 
     }
@@ -50,6 +58,11 @@ public class App extends Application {
         whatWebKud = loaderWhatWeb.getController();
         whatWebKud.setMainApp(this);
 
+        FXMLLoader loaderCMS = new FXMLLoader(getClass().getResource("/cms.fxml"));
+        cmsUi = (Parent) loaderCMS.load();
+        cmsKud = loaderCMS.getController();
+        cmsKud.setMainApp(this);
+
 
     }
 
@@ -63,11 +76,10 @@ public class App extends Application {
         stage.show();
     }
 
-
-    public void whatWebErakutsi() {
-        stage.setTitle("What Web");
-        stage.setScene(whatWebUIScene);
-        stage.show();
+    public void cmsTablaEguneratu() throws MalformedURLException, SQLException {
+        cmsKud.kargatu();
     }
+
+
 
 }

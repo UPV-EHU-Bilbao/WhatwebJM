@@ -32,8 +32,9 @@
                   <TableColumn fx:id="emailId" prefWidth="75.0" text="Email" />
                   <TableColumn fx:id="ipId" prefWidth="75.0" text="Ip" />
                   <TableColumn fx:id="cmsId" prefWidth="128.00003051757812" text="CMS" />
-                  <TableColumn prefWidth="131.0" text="Version" />
+                  <TableColumn fx:id="cmsVersionId" prefWidth="75.0" text="CMS Version" />
                   <TableColumn prefWidth="101.0" text="Last Updated" />
+                  <TableColumn fx:id="ezabatuId" prefWidth="75.0" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -49,17 +50,20 @@
                </font>
             </FontAwesomeIconView>
             <ComboBox fx:id="comboBoxId" layoutX="385.0" layoutY="24.0" prefHeight="28.0" prefWidth="110.0" style="-fx-border-color: #3F2B63;" />
-            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Add URL">
+            <Button fx:id="addURLID" layoutX="527.0" layoutY="25.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Eguneratu taula" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="#fffdfd" />
+                  <FontAwesomeIconView fill="#fffdfd" glyphName="REFRESH" />
                </graphic>
+               <font>
+                  <Font size="10.0" />
+               </font>
             </Button>
             <TextField fx:id="urlField" layoutX="80.0" layoutY="24.0" prefHeight="28.0" prefWidth="287.0" style="-fx-border-color: #3F2B63;" />
          </children>
       </Pane>
       <Pane prefHeight="143.0" prefWidth="637.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Label layoutX="90.0" layoutY="23.0" text="WordPRess, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
+            <Label layoutX="90.0" layoutY="23.0" text="WordPress, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
                <font>
                   <Font size="22.0" />
                </font>

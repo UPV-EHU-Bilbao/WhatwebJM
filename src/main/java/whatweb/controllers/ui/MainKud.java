@@ -6,6 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import whatweb.App;
+import whatweb.controllers.db.OrrialdeaKud;
+import whatweb.model.Orrialde;
+
+import java.net.MalformedURLException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainKud {
 
@@ -29,8 +36,10 @@ public class MainKud {
     private App app;
 
     @FXML
-    void cmsClick(ActionEvent event) {
+    void cmsClick(ActionEvent event) throws MalformedURLException, SQLException, InterruptedException {
+        app.cmsTablaEguneratu();
         cmsAPid.toFront();
+
     }
 
     @FXML
@@ -53,7 +62,9 @@ public class MainKud {
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException, MalformedURLException {
        cmsAPid.toFront();
     }
+
+
 }
