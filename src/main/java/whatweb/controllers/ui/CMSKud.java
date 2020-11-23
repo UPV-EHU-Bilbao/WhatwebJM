@@ -124,6 +124,7 @@ public class CMSKud {
         });
 
         kargatu();
+        setComboBoxa();
 
     }
 
@@ -153,6 +154,12 @@ public class CMSKud {
         orrialdeak = ok.bilatuOrrialdeak(zerBilatu,bilaketa);
         setLista(orrialdeak);
 
+    }
+
+    void setComboBoxa(){
+        ObservableList<String> aukerak = FXCollections.observableArrayList();
+        aukerak.addAll("CMS","CMS Bertsioa", "URL");
+        comboBoxId.setItems(aukerak);
     }
 
     public void setMainApp(App a) {
