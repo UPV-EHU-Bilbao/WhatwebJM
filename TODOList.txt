@@ -1,4 +1,2 @@
 - Programak datu basea sortzea existitzen ez bada (edo mysqlite fitxategia sortu eta github-era igo)
-- Eskaneatutako elementuak datu basean gorde
-- Taula datu basean dauden elementuekin bete
-- Taulan "+" ikurra geitu eta kudeatu
+- Taulan "+" ikurra gehitu eta kudeatu
