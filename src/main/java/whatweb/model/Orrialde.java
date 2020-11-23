@@ -84,8 +84,15 @@ public class Orrialde {
     public String getEzabatu(){return ezabatu;}
 
     public Orrialde(String cms, String cmsVersion, URL url, String httpServer, String country, String email, String ip, Date lastUpdate) {
-        this.cms = cms;
-        this.cmsVersion = cmsVersion;
+        if(cms.equals("")){
+            this.cms="Ez da zehazten";
+            this.cmsVersion="-";
+        }
+        else{
+            this.cms = cms;
+            this.cmsVersion = cmsVersion;
+        }
+
         this.url = url;
         this.httpServer = httpServer;
         this.country = country;
