@@ -57,6 +57,9 @@ public class WWKud {
     @FXML
     private ImageView travoltaId;
 
+    private OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+
+
 
 
     @FXML
@@ -89,7 +92,6 @@ public class WWKud {
     //irakurri insertak
         // konpondu queryak
         //datu basean gorde
-        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
         orkud.txertatuDatuak(agindu.replace(" IGNORE", " OR IGNORE"));
     }
 
