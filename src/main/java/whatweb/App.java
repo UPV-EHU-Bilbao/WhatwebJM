@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.controllers.ui.CMSKud;
@@ -42,28 +43,39 @@ public class App extends Application {
         stage = primaryStage;
         pantailakKargatu();
         mainScene = new Scene(mainUI,899,732);
-        whatWebUIScene= new Scene(whatWebUI,899,732);
         hasieraKargatu();
 
     }
 
     private void pantailakKargatu() throws IOException {
+
         FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/Main.fxml"));
+
+        mainKud = new MainKud(this); //  setMain() metodoa ekidituz
+        whatWebKud = new WWKud();
+        cmsKud = new CMSKud();
+
+        Callback<Class<?>, Object> controllerFactory = type -> {
+            if (type == MainKud.class) {
+                return mainKud ;
+            } else if (type == WWKud.class) {
+                return whatWebKud;
+            } else if (type == CMSKud.class) {
+                return cmsKud;
+            } else {
+                // default behavior for controllerFactory:
+                try {
+                    return type.newInstance();
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                    throw new RuntimeException(exc); // fatal, just bail...
+                }
+            }
+        };
+
+        loaderMain.setControllerFactory(controllerFactory);
+
         mainUI = (Parent) loaderMain.load();
-        mainKud = loaderMain.getController();
-        mainKud.setMainApp(this);
-
-        FXMLLoader loaderWhatWeb = new FXMLLoader(getClass().getResource("/whatweb.fxml"));
-        whatWebUI = (Parent) loaderWhatWeb.load();
-        whatWebKud = loaderWhatWeb.getController();
-        whatWebKud.setMainApp(this);
-
-        FXMLLoader loaderCMS = new FXMLLoader(getClass().getResource("/cms.fxml"));
-        cmsUi = (Parent) loaderCMS.load();
-        cmsKud = loaderCMS.getController();
-        cmsKud.setMainApp(this);
-
-
     }
 
     public static void main(String[] args) {
