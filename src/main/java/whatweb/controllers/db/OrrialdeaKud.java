@@ -32,7 +32,7 @@ public class OrrialdeaKud {
 
     public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException{
         ResultSet rs1, rs2;
-        String targetidlortuquery = "select target_id,lastUpdate from targets where target='" + url + "' and status=200";
+        String targetidlortuquery = "select target_id,lastUpdate from targets where target='" + url + "'";
         rs1 = dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
         Integer id = rs1.getInt("target_id");
         Orrialde o = new Orrialde();
@@ -53,7 +53,7 @@ public class OrrialdeaKud {
     }
 
     public List<Orrialde> lortuOrrialdeak() throws SQLException, MalformedURLException{
-        String targetlortu = "select target from targets where status=200";
+        String targetlortu = "select target from targets";
         ResultSet rs;
         rs=dbkud.execSQL(targetlortu);
 
@@ -91,5 +91,13 @@ public class OrrialdeaKud {
             emaitza.add(getInformazioa(url));
         }
         return emaitza;
+    }
+
+    public String idLortu() throws SQLException {
+        String lortuId= "select target_id from targets order by target_id desc limit 1";
+        ResultSet rs= dbkud.execSQL(lortuId);
+        String id = rs.getString("target_id");
+        return id;
+
     }
 }

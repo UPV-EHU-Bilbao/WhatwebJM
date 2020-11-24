@@ -5,6 +5,8 @@ import java.io.CharArrayWriter;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import whatweb.App;
+import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
 
 public class WWKud {
@@ -88,11 +91,19 @@ public class WWKud {
         }
 
     }
-    private void txertatu(String agindu){ //DATU BASEAN GORDE SCANERRAREN DATUAK
+    private void txertatu(String agindu) throws SQLException { //DATU BASEAN GORDE SCANERRAREN DATUAK
     //irakurri insertak
         // konpondu queryak
         //datu basean gorde
-        orkud.txertatuDatuak(agindu.replace(" IGNORE", " OR IGNORE"));
+        agindu=agindu.replace(" IGNORE", " OR IGNORE");
+        orkud.txertatuDatuak(agindu);
+        String id= orkud.idLortu();
+        System.out.println(agindu);
+        if(agindu.toLowerCase().contains("targets")){
+            System.out.println("he entrado en el if de la data");
+            String data = "update targets set lastUpdate=DATE() where target_id='"+id+"';"; //en vez de la url hay que cambiarlo por la id de la ultima insertada
+            orkud.txertatuDatuak(data);
+        }
     }
 
 
@@ -131,9 +142,6 @@ public class WWKud {
                 txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                 sqlAgindu = reader.readLine();
             }
-            String data = "update targets set lastUpdate=DATE() where target='"+urlId.getText()+"';";
-            System.out.println(data);
-            orkud.txertatuDatuak(data);
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
             input.close();
         } catch (Exception err) {
@@ -146,4 +154,6 @@ public class WWKud {
     public WWKud() {
         System.out.println("WhatWebKud instantzia");
     }
+
+
 }
