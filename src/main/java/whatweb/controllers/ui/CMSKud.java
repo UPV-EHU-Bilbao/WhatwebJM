@@ -79,11 +79,6 @@ public class CMSKud {
     private List<Orrialde> orrialdeak;
 
 
-    @FXML
-    void urlGehituClick(ActionEvent event) throws SQLException, MalformedURLException {
-        kargatu();
-    }
-
     public CMSKud() {
         System.out.println("CMSKud instantzia");
     }

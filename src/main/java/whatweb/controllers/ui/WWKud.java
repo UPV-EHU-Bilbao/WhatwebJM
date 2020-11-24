@@ -98,9 +98,7 @@ public class WWKud {
         agindu=agindu.replace(" IGNORE", " OR IGNORE");
         orkud.txertatuDatuak(agindu);
         String id= orkud.idLortu();
-        System.out.println(agindu);
         if(agindu.toLowerCase().contains("targets")){
-            System.out.println("he entrado en el if de la data");
             String data = "update targets set lastUpdate=DATE() where target_id='"+id+"';"; //en vez de la url hay que cambiarlo por la id de la ultima insertada
             orkud.txertatuDatuak(data);
         }
@@ -138,8 +136,18 @@ public class WWKud {
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
                     "src/main/resources/insertak.txt"));
             String sqlAgindu = reader.readLine();
+
+            Boolean aurkitua = false;
             while (sqlAgindu != null) {
-                txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                if(aurkitua){
+                    System.out.println(sqlAgindu);
+                    txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                }else{
+                    if(sqlAgindu.contains("200")){
+                        txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                        aurkitua=true;
+                    }
+                }
                 sqlAgindu = reader.readLine();
             }
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu

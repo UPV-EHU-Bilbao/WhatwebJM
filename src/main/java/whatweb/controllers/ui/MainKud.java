@@ -20,7 +20,7 @@ public class MainKud {
     private Button cmsButtonId;
 
     @FXML
-    private Button serverId;
+    private Button serverButtonId;
 
     @FXML
     private Button whatWebId;
@@ -46,47 +46,30 @@ public class MainKud {
     @FXML
     void cmsClick(ActionEvent event) throws MalformedURLException, SQLException, InterruptedException {
 
-        if(event.getSource()==cmsButtonId){
             cmsAPid.toFront();
             cmsAPid.requestFocus();
-        }
-        else if(event.getSource()==whatWebId) {
-            whatwebAPid.toFront();
-            whatwebAPid.requestFocus();
             app.cmsTablaEguneratu();
-        }else if (event.getSource()==serverId){
-            serverAPId.toFront();
-            serverAPId.requestFocus();
-        }
+
     }
 
     @FXML
     void serverClick(ActionEvent event) throws MalformedURLException, SQLException {
-        if(event.getSource()==cmsButtonId){
-            cmsAPid.toFront();
-            cmsAPid.requestFocus();
-        }
-        else if(event.getSource()==whatWebId) {
-            whatwebAPid.toFront();
-            whatwebAPid.requestFocus();
-            app.cmsTablaEguneratu();
-        }else if (event.getSource()==serverId){
+
             serverAPId.toFront();
             serverAPId.requestFocus();
-        }
+
     }
 
     @FXML
     void whatWebClick(ActionEvent event) throws MalformedURLException, SQLException {
         whatwebAPid.toFront();
-    }
-
-    public void setMainApp(App a) {
-        app = a;
+        whatwebAPid.requestFocus();
     }
 
 
-    public MainKud(App app) {
+
+    public MainKud(App pApp) {
+        this.app=pApp;
         System.out.println("MainKud instantziatu");
     }
 

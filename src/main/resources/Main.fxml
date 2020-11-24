@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!--suppress ALL -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" stylesheets="@estiloa.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.MainKud">
    <children>
       <VBox layoutX="-8.0" layoutY="-6.0" prefHeight="744.0" prefWidth="269.0" style="-fx-background-color: #3F2B63;">
@@ -31,7 +30,7 @@
                   <FontAwesomeIconView fill="#f5f5f5" glyphName="TABLE" />
                </graphic>
             </Button>
-            <Button fx:id="serverId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#serverClick" prefHeight="76.0" prefWidth="280.0" text="Server" textFill="#fcfcfc">
+            <Button fx:id="serverButtonId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#serverClick" prefHeight="76.0" prefWidth="280.0" text="Server" textFill="#fcfcfc">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="SERVER" />
                </graphic>

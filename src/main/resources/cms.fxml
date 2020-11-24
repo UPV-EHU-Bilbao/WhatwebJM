@@ -68,13 +68,5 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="addURLID" layoutX="40.0" layoutY="253.0" mnemonicParsing="false" onAction="#urlGehituClick" style="-fx-background-color: #3F2B63;" text="Eguneratu taula" textFill="WHITE">
-         <graphic>
-            <FontAwesomeIconView fill="#fffdfd" glyphName="REFRESH" />
-         </graphic>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
