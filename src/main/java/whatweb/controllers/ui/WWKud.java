@@ -132,6 +132,7 @@ public class WWKud {
                 sqlAgindu = reader.readLine();
             }
             String data = "update targets set lastUpdate=DATE() where target='"+urlId.getText()+"';";
+            System.out.println(data);
             orkud.txertatuDatuak(data);
             Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
             input.close();

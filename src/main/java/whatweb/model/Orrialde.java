@@ -15,7 +15,7 @@ public class Orrialde {
     private String email;
     private String ip;
     private String ezabatu = "ezabatu";
-    private Date lastUpdate;
+    private String lastUpdate;
 
     public void setEzabatu(String ezabatu) {
         this.ezabatu = ezabatu;
@@ -49,7 +49,7 @@ public class Orrialde {
         this.ip = ip;
     }
 
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -81,13 +81,13 @@ public class Orrialde {
         return ip;
     }
 
-    public Date getLastUpdate() {
+    public String getLastUpdate() {
         return lastUpdate;
     }
 
     public String getEzabatu(){return ezabatu;}
 
-    public Orrialde(String cms, String cmsVersion, URL url, String httpServer, String country, String email, String ip, Date lastUpdate) {
+    public Orrialde(String cms, String cmsVersion, URL url, String httpServer, String country, String email, String ip, String lastUpdate) {
 
             this.cms = cms;
             this.cmsVersion = cmsVersion;
