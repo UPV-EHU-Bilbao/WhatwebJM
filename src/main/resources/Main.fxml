@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!--suppress ALL -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="899.0" stylesheets="@estiloa.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.MainKud">
    <children>
       <VBox layoutX="-8.0" layoutY="-6.0" prefHeight="744.0" prefWidth="269.0" style="-fx-background-color: #3F2B63;">
@@ -49,6 +50,9 @@
             </AnchorPane>
             <AnchorPane fx:id="whatwebAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
                <fx:include fx:id="whatwebId" source="./whatweb.fxml" />
+            </AnchorPane>
+            <AnchorPane fx:id="serverAPId" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+               <fx:include fx:id="serverId" source="./server.fxml" />
             </AnchorPane>
          </children>
       </StackPane>

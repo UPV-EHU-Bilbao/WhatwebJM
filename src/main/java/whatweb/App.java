@@ -12,6 +12,7 @@ import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.controllers.ui.CMSKud;
 import whatweb.controllers.ui.MainKud;
+import whatweb.controllers.ui.ServerKud;
 import whatweb.controllers.ui.WWKud;
 import whatweb.model.Orrialde;
 
@@ -33,6 +34,7 @@ public class App extends Application {
     private MainKud mainKud;
     private WWKud whatWebKud;
     private CMSKud cmsKud;
+    private ServerKud serverKud;
 
     private Scene mainScene;
     private Scene whatWebUIScene;
@@ -54,6 +56,7 @@ public class App extends Application {
         mainKud = new MainKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WWKud();
         cmsKud = new CMSKud();
+        serverKud= new ServerKud();
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == MainKud.class) {
@@ -62,6 +65,8 @@ public class App extends Application {
                 return whatWebKud;
             } else if (type == CMSKud.class) {
                 return cmsKud;
+            } else if (type == ServerKud.class) {
+                return serverKud;
             } else {
                 // default behavior for controllerFactory:
                 try {
@@ -74,8 +79,7 @@ public class App extends Application {
         };
 
         loaderMain.setControllerFactory(controllerFactory);
-
-        mainUI = (Parent) loaderMain.load();
+        mainUI =  (Parent) loaderMain.load();
     }
 
     public static void main(String[] args) {

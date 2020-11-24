@@ -32,6 +32,8 @@ public class MainKud {
     private AnchorPane cmsAPid;
 
     @FXML
+    private AnchorPane serverAPId;
+    @FXML
     private CMSKud cmsController;
 
     @FXML
@@ -48,22 +50,34 @@ public class MainKud {
             cmsAPid.toFront();
             cmsAPid.requestFocus();
         }
-        else{
+        else if(event.getSource()==whatWebId) {
             whatwebAPid.toFront();
             whatwebAPid.requestFocus();
             app.cmsTablaEguneratu();
-
+        }else if (event.getSource()==serverId){
+            serverAPId.toFront();
+            serverAPId.requestFocus();
         }
-
     }
 
     @FXML
-    void serverClick(ActionEvent event) {
-
+    void serverClick(ActionEvent event) throws MalformedURLException, SQLException {
+        if(event.getSource()==cmsButtonId){
+            cmsAPid.toFront();
+            cmsAPid.requestFocus();
+        }
+        else if(event.getSource()==whatWebId) {
+            whatwebAPid.toFront();
+            whatwebAPid.requestFocus();
+            app.cmsTablaEguneratu();
+        }else if (event.getSource()==serverId){
+            serverAPId.toFront();
+            serverAPId.requestFocus();
+        }
     }
 
     @FXML
-    void whatWebClick(ActionEvent event) {
+    void whatWebClick(ActionEvent event) throws MalformedURLException, SQLException {
         whatwebAPid.toFront();
     }
 
