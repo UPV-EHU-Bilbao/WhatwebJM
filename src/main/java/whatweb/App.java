@@ -44,7 +44,7 @@ public class App extends Application {
 
         stage = primaryStage;
         pantailakKargatu();
-        mainScene = new Scene(mainUI,899,732);
+        mainScene = new Scene(mainUI,1000,732);
         hasieraKargatu();
 
     }

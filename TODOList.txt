@@ -1,2 +1,5 @@
-- Programak datu basea sortzea existitzen ez bada (edo mysqlite fitxategia sortu eta github-era igo)
 - Taulan "+" ikurra gehitu eta kudeatu
+- APIa erabili pantaila kaptura egiteko
+      <Image url="defe3.jpeg" />
+      width 640
+      heigth 732

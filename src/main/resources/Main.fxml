@@ -44,13 +44,13 @@
       </VBox>
       <StackPane fx:id="stackPaneId" layoutX="259.0">
          <children>
-            <AnchorPane fx:id="cmsAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+            <AnchorPane fx:id="cmsAPid" prefHeight="730.0" prefWidth="978.0" style="-fx-background-color: white;">
                     <fx:include fx:id="cmsId" source="./cms.fxml" />
             </AnchorPane>
-            <AnchorPane fx:id="whatwebAPid" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+            <AnchorPane fx:id="whatwebAPid" prefHeight="732.0" prefWidth="978.0" style="-fx-background-color: white;">
                <fx:include fx:id="whatwebId" source="./whatweb.fxml" />
             </AnchorPane>
-            <AnchorPane fx:id="serverAPId" prefHeight="732.0" prefWidth="640.0" style="-fx-background-color: white;">
+            <AnchorPane fx:id="serverAPId" prefHeight="732.0" prefWidth="978.0" style="-fx-background-color: white;">
                <fx:include fx:id="serverId" source="./server.fxml" />
             </AnchorPane>
          </children>
