@@ -1,9 +1,6 @@
 package whatweb.controllers.ui;
 
-import java.io.BufferedReader;
-import java.io.CharArrayWriter;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,13 +117,13 @@ public class WWKud {
             String line2;
             Process p = null;
             Process p2 = null;
-            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
+            String exek= "./whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
             }
 
-            p = Runtime.getRuntime().exec(exek);
+            p = Runtime.getRuntime().exec(exek, null, new File("/opt/WhatWeb"));
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -160,7 +157,7 @@ public class WWKud {
     }
 
     public WWKud() {
-        System.out.println("WhatWebKud instantzia");
+
     }
 
 

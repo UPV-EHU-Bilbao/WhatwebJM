@@ -1,6 +1,8 @@
 package whatweb.controllers.db;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import whatweb.controllers.db.DBKud;
 import whatweb.model.Orrialde;
 
@@ -78,6 +80,19 @@ public class OrrialdeaKud {
 
     public void txertatuDatuak(String replace) {
         dbkud.execSQL(replace);
+    }
+
+    public ObservableList<Orrialde> urlAkLortu() throws SQLException, MalformedURLException {
+        String query= "select target from targets ";
+        ResultSet rs= dbkud.execSQL(query);
+        ObservableList<Orrialde> emaitza= FXCollections.observableArrayList();
+        while(rs.next()){
+            String targeta= rs.getString("target");
+            Orrialde o= new Orrialde();
+            o.setUrl(new URL(targeta));
+             emaitza.add(o);
+        }
+        return emaitza;
     }
 
     public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException {

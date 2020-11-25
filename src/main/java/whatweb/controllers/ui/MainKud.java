@@ -70,11 +70,10 @@ public class MainKud {
 
     public MainKud(App pApp) {
         this.app=pApp;
-        System.out.println("MainKud instantziatu");
     }
 
     @FXML
-    void initialize() throws SQLException, MalformedURLException {
+    void initialize() {
        cmsAPid.toFront();
     }
 

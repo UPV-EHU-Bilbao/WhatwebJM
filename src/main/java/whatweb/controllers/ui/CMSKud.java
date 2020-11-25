@@ -80,7 +80,7 @@ public class CMSKud {
 
 
     public CMSKud() {
-        System.out.println("CMSKud instantzia");
+
     }
 
 

@@ -1,5 +1,3 @@
 - Taulan "+" ikurra gehitu eta kudeatu
 - APIa erabili pantaila kaptura egiteko
-      <Image url="defe3.jpeg" />
-      width 640
-      heigth 732
+-, null, new File("/opt/WhatWeb")

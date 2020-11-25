@@ -40,7 +40,7 @@
       <Button fx:id="eskaneatuId" layoutX="274.0" layoutY="601.0" mnemonicParsing="false" onAction="#eskaneatuClick" text="Eskaneatu eta gorde" textFill="WHITE" />
       <ImageView fx:id="travoltaId" fitHeight="289.0" fitWidth="330.0" layoutX="242.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
          <image>
-
+            <Image url="defe3.jpeg" />
          </image>
       </ImageView>
    </children>
