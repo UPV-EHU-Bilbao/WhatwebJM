@@ -33,14 +33,14 @@ public class MainKud {
 
     @FXML
     private AnchorPane serverAPId;
-    @FXML
-    private CMSKud cmsController;
 
-    @FXML
-    private WWKud whatwebController;
 
     @FXML
     private AnchorPane whatwebAPid;
+
+    @FXML
+    private AnchorPane nabigatzaileaId;
+
     private App app;
 
     @FXML
@@ -78,4 +78,12 @@ public class MainKud {
     }
 
 
+    public void nabigatzaileaErakutsi() {
+        nabigatzaileaId.toFront();
+        nabigatzaileaId.requestFocus();
+    }
+
+    public void cmsErakusti() {
+        cmsAPid.toFront();
+    }
 }

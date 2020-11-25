@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
-import whatweb.controllers.ui.CMSKud;
-import whatweb.controllers.ui.MainKud;
-import whatweb.controllers.ui.ServerKud;
-import whatweb.controllers.ui.WWKud;
+import whatweb.controllers.ui.*;
 import whatweb.model.Orrialde;
 
 import java.io.IOException;
@@ -26,18 +23,19 @@ import static javafx.application.Application.launch;
 public class App extends Application {
 
     private Parent mainUI;
-    private Parent whatWebUI;
-    private Parent cmsUi;
+    private Parent nabUI;
 
     private Stage stage;
+    private Stage stageNab;
 
     private MainKud mainKud;
     private WWKud whatWebKud;
     private CMSKud cmsKud;
     private ServerKud serverKud;
+    private NabKud nabKud;
 
     private Scene mainScene;
-    private Scene whatWebUIScene;
+    private Scene sceneNab;
 
 
     public void start(Stage primaryStage) throws Exception {
@@ -55,8 +53,9 @@ public class App extends Application {
 
         mainKud = new MainKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WWKud();
-        cmsKud = new CMSKud();
+        cmsKud = new CMSKud(this);
         serverKud= new ServerKud();
+        nabKud = new NabKud(this);
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == MainKud.class) {
@@ -67,7 +66,10 @@ public class App extends Application {
                 return cmsKud;
             } else if (type == ServerKud.class) {
                 return serverKud;
-            } else {
+            } else if (type == NabKud.class){
+                return nabKud;
+            }
+            else {
                 // default behavior for controllerFactory:
                 try {
                     return type.newInstance();
@@ -96,6 +98,11 @@ public class App extends Application {
         cmsKud.kargatu();
     }
 
-
-
+    public void erakNab(String helbidea) {
+        nabKud.setHelbidea(helbidea);
+        mainKud.nabigatzaileaErakutsi();
+    }
+    public void cmsErakutsi(){
+        mainKud.cmsErakusti();
+    }
 }

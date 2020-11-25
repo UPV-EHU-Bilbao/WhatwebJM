@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="978.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.NabKud">
+   <children>
+      <Label layoutX="128.0" layoutY="258.0" text="Zein nagitazailearekin irekin nahi duzu?">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fx:id="cromoId" glyphName="CHROME" layoutX="218.0" layoutY="459.0" size="100" text="" wrappingWidth="101.0" />
+      <FontAwesomeIconView fx:id="morcillaId" glyphName="FIREFOX" layoutX="468.0" layoutY="456.0" size="100" />
+      <Label fx:id="cromoLabel" layoutX="214.0" layoutY="373.0" onMouseClicked="#cromoClonk" prefHeight="100.0" prefWidth="110.0" />
+      <Label fx:id="morcillaLabel" layoutX="463.0" layoutY="373.0" onMouseClicked="#morcilloClonck" prefHeight="100.0" prefWidth="110.0" stylesheets="@estiloa.css" />
+   </children>
+</AnchorPane>
