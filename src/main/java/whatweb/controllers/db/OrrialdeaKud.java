@@ -1,8 +1,6 @@
 package whatweb.controllers.db;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import whatweb.controllers.db.DBKud;
 import whatweb.model.Orrialde;
 
@@ -101,9 +99,45 @@ public class OrrialdeaKud {
         rs=dbkud.execSQL(targetlortu);
 
         List<Orrialde> emaitza = new ArrayList<Orrialde>();
-        while(rs.next()){
-            String url= rs.getString("target");
-            emaitza.add(getInformazioa(url));
+
+        if(!bilaketa.isEmpty()){
+            String targetlortu="";
+            String cmsGabekoak="";
+            switch(zerBilatu){
+                case "CMS":
+                    targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
+                            " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
+                    break;
+                case "CMS Bertsioa": //CMS-ren berdina da izan ere datu basean datuak String bakar batean gordetzen dira, e.g.,"WordPress 5.4.2"
+                    targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
+                            " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
+                    break;
+                case "URL": //bi bilaketa egin behar dira, CMS dutenak eta CMS ez dutenak
+                    targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%'" +
+                            " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
+                    cmsGabekoak = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%' group by scans.target_id";
+                    break;
+                default:
+                    targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
+                            " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
+                    break;
+            }
+            ResultSet rs,rs1;
+            rs=dbkud.execSQL(targetlortu);
+
+            while(rs.next()){
+                String url= rs.getString("target");
+                emaitza.add(getInformazioa(url));
+            }
+            if(zerBilatu=="URL"){ //url-ak bilatzen bagaude, CMS gabeko orriak bilatuko ditugu bebai
+                rs1=dbkud.execSQL(cmsGabekoak);
+                while(rs1.next()){
+                    String url= rs1.getString("target");
+                    emaitza.add(getInformazioa(url));
+                }
+            }
+        }else{ //bilaketa hutsa badago, webgune guztiak lortuko ditugu
+            emaitza= lortuOrrialdeak();
         }
         return emaitza;
     }

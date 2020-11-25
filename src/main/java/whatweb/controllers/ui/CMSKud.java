@@ -145,7 +145,9 @@ public class CMSKud {
     void bilatuClick(ActionEvent event) throws MalformedURLException, SQLException {
         String zerBilatu = comboBoxId.getValue();
         String bilaketa = urlField.getText();
+        System.out.println("comboBoxId "+zerBilatu);
         orrialdeak.clear();
+
         orrialdeak = ok.bilatuOrrialdeak(zerBilatu,bilaketa);
         setLista(orrialdeak);
 
@@ -155,6 +157,7 @@ public class CMSKud {
         ObservableList<String> aukerak = FXCollections.observableArrayList();
         aukerak.addAll("CMS","CMS Bertsioa", "URL");
         comboBoxId.setItems(aukerak);
+        comboBoxId.getSelectionModel().selectFirst();
     }
 
     public void setMainApp(App a) {
