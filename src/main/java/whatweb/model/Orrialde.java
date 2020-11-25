@@ -9,7 +9,7 @@ public class Orrialde {
 
     private String cms;
     private String cmsVersion;
-    private URL url;
+    private String url;
     private String httpServer;
     private String country;
     private String email;
@@ -29,7 +29,7 @@ public class Orrialde {
         this.cmsVersion = cmsVersion;
     }
 
-    public void setUrl(URL url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -61,7 +61,7 @@ public class Orrialde {
         return cmsVersion;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
@@ -87,7 +87,7 @@ public class Orrialde {
 
     public String getEzabatu(){return ezabatu;}
 
-    public Orrialde(String cms, String cmsVersion, URL url, String httpServer, String country, String email, String ip, String lastUpdate) {
+    public Orrialde(String cms, String cmsVersion, String url, String httpServer, String country, String email, String ip, String lastUpdate) {
 
             this.cms = cms;
             this.cmsVersion = cmsVersion;

@@ -1,13 +1,14 @@
 package whatweb.controllers.ui;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -34,7 +35,7 @@ public class CMSKud {
     private TableView<Orrialde> tableId;
 
     @FXML
-    private TableColumn<Orrialde, URL> urlId;
+    private TableColumn<Orrialde, String> urlId;
 
     @FXML
     private TableColumn<Orrialde, String> httpServerId;
@@ -79,8 +80,9 @@ public class CMSKud {
     private List<Orrialde> orrialdeak;
 
 
-    public CMSKud() {
-
+    @FXML
+    void urlGehituClick(ActionEvent event) throws SQLException, MalformedURLException {
+        kargatu();
     }
 
 
@@ -103,8 +105,8 @@ public class CMSKud {
             TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(col);
 
             cell.setOnMouseClicked(event -> {
-                if (! cell.isEmpty()) {
-                    URL helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
+                if (!cell.isEmpty()) {
+                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
                     try {
                         ezabatuHelbidea(helbidea);
                         kargatu();
@@ -115,7 +117,20 @@ public class CMSKud {
                 }
             });
 
-            return cell ;
+            return cell;
+        });
+
+        urlId.setCellFactory(kol -> {
+            TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
+
+            cell.setOnMouseClicked(event -> {
+                if (!cell.isEmpty()) {
+                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
+                    urlIrakurri(helbidea);
+                }
+            });
+
+            return cell;
         });
 
         kargatu();
@@ -125,17 +140,17 @@ public class CMSKud {
 
     public void kargatu() throws MalformedURLException, SQLException {
         tableId.getItems().clear();
-        orrialdeak= ok.lortuOrrialdeak(); //orrialdeak ditugu
+        orrialdeak = ok.lortuOrrialdeak(); //orrialdeak ditugu
         setLista(orrialdeak);
 
     }
 
-    private void ezabatuHelbidea(URL helbidea) throws SQLException {
+    private void ezabatuHelbidea(String helbidea) throws SQLException {
         ok.ezabatuHelbidea(helbidea);
     }
 
     public void setLista(List<Orrialde> plista) {
-        lista= FXCollections.observableArrayList();
+        lista = FXCollections.observableArrayList();
         lista.addAll(plista);
         tableId.setItems(lista);
 
@@ -145,22 +160,45 @@ public class CMSKud {
     void bilatuClick(ActionEvent event) throws MalformedURLException, SQLException {
         String zerBilatu = comboBoxId.getValue();
         String bilaketa = urlField.getText();
-        System.out.println("comboBoxId "+zerBilatu);
         orrialdeak.clear();
-
-        orrialdeak = ok.bilatuOrrialdeak(zerBilatu,bilaketa);
+        orrialdeak = ok.bilatuOrrialdeak(zerBilatu, bilaketa);
         setLista(orrialdeak);
 
     }
 
-    void setComboBoxa(){
+    void setComboBoxa() {
         ObservableList<String> aukerak = FXCollections.observableArrayList();
-        aukerak.addAll("CMS","CMS Bertsioa", "URL");
+        aukerak.addAll("CMS", "CMS Bertsioa", "URL");
         comboBoxId.setItems(aukerak);
-        comboBoxId.getSelectionModel().selectFirst();
     }
 
     public void setMainApp(App a) {
         app = a;
+    }
+
+    public void urlIrakurri(String url) {
+        List<String> processes = new LinkedList<String>();
+        try {
+            String line;
+            String line2;
+            Process p = null;
+            Process p2 = null;
+            String exek = "firefox " + url;
+
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                exek = "wsl "+exek;
+            }
+
+            p = Runtime.getRuntime().exec(exek);
+
+            BufferedReader input =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while ((line = input.readLine()) != null) {
+                processes.add(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
