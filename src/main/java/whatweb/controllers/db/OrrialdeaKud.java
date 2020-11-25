@@ -30,6 +30,7 @@ public class OrrialdeaKud {
     }
 
 
+
     public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException{
         ResultSet rs1, rs2;
         String targetidlortuquery = "select target_id,lastUpdate from targets where target='" + url + "'";

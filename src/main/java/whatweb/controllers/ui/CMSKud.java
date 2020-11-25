@@ -1,13 +1,13 @@
 package whatweb.controllers.ui;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -79,7 +79,8 @@ public class CMSKud {
     private List<Orrialde> orrialdeak;
 
 
-    public CMSKud() {
+    public CMSKud(App a) {
+        this.app=a;
         System.out.println("CMSKud instantzia");
     }
 
@@ -116,8 +117,9 @@ public class CMSKud {
             });
 
             return cell ;
-        });
 
+
+        });
         urlId.setCellFactory(kol -> {
             TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
 
@@ -131,12 +133,12 @@ public class CMSKud {
             return cell ;
         });
 
+
+
         kargatu();
         setComboBoxa();
 
     }
-
-    public CMSKud(App a){this.app = a;}
 
     public void kargatu() throws MalformedURLException, SQLException {
         tableId.getItems().clear();
@@ -174,7 +176,5 @@ public class CMSKud {
         comboBoxId.setItems(aukerak);
         comboBoxId.getSelectionModel().selectFirst();
     }
-
-
 
 }
