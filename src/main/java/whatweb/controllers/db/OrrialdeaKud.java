@@ -1,6 +1,8 @@
 package whatweb.controllers.db;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import whatweb.controllers.db.DBKud;
 import whatweb.model.Orrialde;
 
@@ -88,7 +90,7 @@ public class OrrialdeaKud {
         while(rs.next()){
             String targeta= rs.getString("target");
             Orrialde o= new Orrialde();
-            o.setUrl(new URL(targeta));
+            o.setUrl(targeta);
              emaitza.add(o);
         }
         return emaitza;
@@ -102,7 +104,6 @@ public class OrrialdeaKud {
         List<Orrialde> emaitza = new ArrayList<Orrialde>();
 
         if(!bilaketa.isEmpty()){
-            String targetlortu="";
             String cmsGabekoak="";
             switch(zerBilatu){
                 case "CMS":
@@ -123,7 +124,7 @@ public class OrrialdeaKud {
                             " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
                     break;
             }
-            ResultSet rs,rs1;
+            ResultSet rs1;
             rs=dbkud.execSQL(targetlortu);
 
             while(rs.next()){

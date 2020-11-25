@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.NabKud">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="whatweb.controllers.ui.NabKud">
    <children>
-      <Label layoutX="40.0" layoutY="38.0" text="Zein nagitazailearekin irekin nahi duzu?">
+      <Label layoutX="78.0" layoutY="258.0" text="Zein nagitazailearekin irekin nahi duzu?">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <FontAwesomeIconView fx:id="cromoId" glyphName="CHROME" layoutX="130.0" layoutY="239.0" size="100" text="" wrappingWidth="101.0" />
-      <FontAwesomeIconView fx:id="morcillaId" glyphName="FIREFOX" layoutX="380.0" layoutY="236.0" size="100" />
+      <FontAwesomeIconView fx:id="cromoId" glyphName="CHROME" layoutX="168.0" layoutY="459.0" onMouseClicked="#cromoClonck" size="100" text="" wrappingWidth="101.0" />
+      <FontAwesomeIconView fx:id="morcillaId" glyphName="FIREFOX" layoutX="418.0" layoutY="456.0" onMouseClicked="#morcillaClonck" size="100" />
    </children>
 </AnchorPane>

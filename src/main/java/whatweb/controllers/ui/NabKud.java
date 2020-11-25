@@ -49,13 +49,13 @@ public class NabKud {
     }
 
     @FXML
-    void cromoClonk() {
-        nab = true;
+    void cromoClonck() {
+        nab =true;
         urlIrakurri();
     }
 
     @FXML
-    void morcilloClonck() {
+    void morcillaClonck() {
         urlIrakurri();
     }
 
