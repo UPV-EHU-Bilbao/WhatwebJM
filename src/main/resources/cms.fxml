@@ -56,12 +56,12 @@
       </Pane>
       <Pane prefHeight="143.0" prefWidth="1000.0" style="-fx-background-color: #3F2B63;">
          <children>
-            <Label layoutX="138.0" layoutY="25.0" text="WordPress, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
+            <Label fx:id="wordpressLabel" layoutX="138.0" layoutY="25.0" text="WordPress, Joomla, phpMyAdmin, Drupal" textFill="#f2f0f0">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="326.0" layoutY="62.0" text="CMS" textFill="WHITE">
+            <Label fx:id="cmsLabel" layoutX="326.0" layoutY="62.0" text="CMS" textFill="WHITE">
                <font>
                   <Font size="34.0" />
                </font>

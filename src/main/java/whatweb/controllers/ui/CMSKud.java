@@ -58,8 +58,6 @@ public class CMSKud {
     @FXML
     private ComboBox<String> comboBoxId;
 
-    @FXML
-    private Button addURLID;
 
     @FXML
     private TextField urlField;
@@ -67,11 +65,15 @@ public class CMSKud {
     @FXML
     private TableColumn<Orrialde, String> ezabatuId;
 
-    @FXML
-    private Button bilatuId;
 
     @FXML
     private TableColumn<Orrialde, Date> lastUpdateId;
+
+    @FXML
+    private Label wordpressLabel;
+
+    @FXML
+    private Label cmsLabel;
 
     private ObservableList<Orrialde> lista;
     private App app;
@@ -81,7 +83,6 @@ public class CMSKud {
 
     public CMSKud(App a) {
         this.app=a;
-        System.out.println("CMSKud instantzia");
     }
 
 
@@ -97,6 +98,10 @@ public class CMSKud {
         cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
         ezabatuId.setCellValueFactory(new PropertyValueFactory<>("ezabatu"));
         lastUpdateId.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ipId.setCellValueFactory(new PropertyValueFactory<>("ip"));
+        countryID.setCellValueFactory(new PropertyValueFactory<>("country"));
+        httpServerId.setCellValueFactory(new PropertyValueFactory<>("httpServer"));
 
         Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 
@@ -141,6 +146,18 @@ public class CMSKud {
     }
 
     public void kargatu() throws MalformedURLException, SQLException {
+        //emailId.setVisible(false);
+        ipId.setVisible(false);
+        //countryID.setVisible(false);
+        httpServerId.setVisible(false);
+
+        cmsId.setVisible(true);
+        cmsVersionId.setVisible(true);
+
+        cmsLabel.setText("CMS");
+        wordpressLabel.setText("WordPress, Joomla, phpMyAdmin, Drupal");
+
+
         tableId.getItems().clear();
         orrialdeak= ok.lortuOrrialdeak(); //orrialdeak ditugu
         setLista(orrialdeak);
@@ -177,4 +194,19 @@ public class CMSKud {
         comboBoxId.getSelectionModel().selectFirst();
     }
 
+    public void serverErakutsi() {
+
+        emailId.setVisible(false);
+        ipId.setVisible(true);
+        countryID.setVisible(false);
+        httpServerId.setVisible(true);
+
+        cmsId.setVisible(false);
+        cmsVersionId.setVisible(false);
+
+        cmsLabel.setText("Server");
+        wordpressLabel.setText("");
+
+
+    }
 }

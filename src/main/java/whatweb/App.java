@@ -105,4 +105,8 @@ public class App extends Application {
     public void cmsErakutsi(){
         mainKud.cmsErakusti();
     }
+
+    public void serverErakutsi() {
+        cmsKud.serverErakutsi();
+    }
 }
