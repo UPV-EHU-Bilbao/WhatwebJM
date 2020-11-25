@@ -33,30 +33,30 @@ public class MainKud {
 
     @FXML
     private AnchorPane serverAPId;
-    @FXML
-    private CMSKud cmsController;
 
-    @FXML
-    private WWKud whatwebController;
 
     @FXML
     private AnchorPane whatwebAPid;
+
+    @FXML
+    private AnchorPane nabigatzaileaId;
+
     private App app;
 
     @FXML
     void cmsClick(ActionEvent event) throws MalformedURLException, SQLException, InterruptedException {
 
-            cmsAPid.toFront();
-            cmsAPid.requestFocus();
-            app.cmsTablaEguneratu();
+        cmsAPid.toFront();
+        cmsAPid.requestFocus();
+        app.cmsTablaEguneratu();
 
     }
 
     @FXML
     void serverClick(ActionEvent event) throws MalformedURLException, SQLException {
 
-            serverAPId.toFront();
-            serverAPId.requestFocus();
+        serverAPId.toFront();
+        serverAPId.requestFocus();
 
     }
 
@@ -70,13 +70,20 @@ public class MainKud {
 
     public MainKud(App pApp) {
         this.app=pApp;
-        System.out.println("MainKud instantziatu");
     }
 
     @FXML
-    void initialize() throws SQLException, MalformedURLException {
-       cmsAPid.toFront();
+    void initialize() {
+        cmsAPid.toFront();
     }
 
 
+    public void nabigatzaileaErakutsi() {
+        nabigatzaileaId.toFront();
+        nabigatzaileaId.requestFocus();
+    }
+
+    public void cmsErakusti() {
+        cmsAPid.toFront();
+    }
 }

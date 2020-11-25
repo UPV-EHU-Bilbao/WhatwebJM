@@ -34,7 +34,7 @@ public class CMSKud {
     private TableView<Orrialde> tableId;
 
     @FXML
-    private TableColumn<Orrialde, URL> urlId;
+    private TableColumn<Orrialde, String> urlId;
 
     @FXML
     private TableColumn<Orrialde, String> httpServerId;
@@ -79,7 +79,8 @@ public class CMSKud {
     private List<Orrialde> orrialdeak;
 
 
-    public CMSKud() {
+    public CMSKud(App a) {
+        this.app=a;
         System.out.println("CMSKud instantzia");
     }
 
@@ -104,7 +105,7 @@ public class CMSKud {
 
             cell.setOnMouseClicked(event -> {
                 if (! cell.isEmpty()) {
-                    URL helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
+                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
                     try {
                         ezabatuHelbidea(helbidea);
                         kargatu();
@@ -116,7 +117,23 @@ public class CMSKud {
             });
 
             return cell ;
+
+
         });
+        urlId.setCellFactory(kol -> {
+            TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
+
+            cell.setOnMouseClicked(event -> {
+                if (! cell.isEmpty()) {
+                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
+                    app.erakNab(helbidea);
+                }
+            });
+
+            return cell ;
+        });
+
+
 
         kargatu();
         setComboBoxa();
@@ -130,7 +147,7 @@ public class CMSKud {
 
     }
 
-    private void ezabatuHelbidea(URL helbidea) throws SQLException {
+    private void ezabatuHelbidea(String helbidea) throws SQLException {
         ok.ezabatuHelbidea(helbidea);
     }
 
@@ -160,7 +177,4 @@ public class CMSKud {
         comboBoxId.getSelectionModel().selectFirst();
     }
 
-    public void setMainApp(App a) {
-        app = a;
-    }
 }
