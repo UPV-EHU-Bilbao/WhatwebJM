@@ -131,7 +131,7 @@ public class WWKud {
                 processes.add(line);
             }
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                    "/home/ena/insertak.txt"));
+                    "src/main/resources/insertak.txt"));
             String sqlAgindu = reader.readLine();
 
             Boolean aurkitua = false;

@@ -40,14 +40,10 @@ public class NabKud {
     private String url;
     private Boolean nab = false;
     private App app;
-
-
-
     @FXML
     void initialize(){
 
     }
-
     @FXML
     void cromoClonck() {
         nab =true;
@@ -75,8 +71,6 @@ public class NabKud {
             else{
                 exek = "google-chrome " + url;
             }
-
-
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl "+exek;
             }
@@ -94,8 +88,6 @@ public class NabKud {
             e.printStackTrace();
         }
     }
-
-
     public void setHelbidea(String helbidea) {
         this.url = helbidea;
     }

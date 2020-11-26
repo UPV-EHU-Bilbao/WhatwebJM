@@ -71,7 +71,7 @@ public class OrrialdeaKud {
             o.setIp(rs4.getString("string"));
         }
         else{
-            o.setHttpServer("Ez da zehazten");
+            o.setIp("Ez da zehazten");
         }
 
 
