@@ -13,12 +13,15 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import whatweb.App;
 import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
@@ -44,6 +47,9 @@ public class WWKud {
     private TextField urlId;
 
     @FXML
+    private Button eskaneatuFitxId;
+
+    @FXML
     private TextArea logId;
 
     @FXML
@@ -60,7 +66,23 @@ public class WWKud {
     private OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
 
 
+    @FXML
+    void fileClick(ActionEvent event) throws IOException, SQLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("TXT fitxategiak", "*.txt")
+        );
+        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow()); //zer sartu metodo honetan
+        Reader targetReader = new FileReader(aukeratua);
+        BufferedReader reader = new BufferedReader(targetReader);
+        String lineaBerria = reader.readLine();
 
+        while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
+            eskaneatuUrl(lineaBerria);
+            lineaBerria = reader.readLine();
+        }
+
+    }
 
     @FXML
     void eskaneatuClick(ActionEvent event) {
@@ -106,18 +128,23 @@ public class WWKud {
     void initialize() {
         travoltaId.setVisible(false);
 
+
     }
 
     public void setMainApp(App p) { app = p; }
 
     public List<String> allProcesses() {
+        List<String> processes;
+        processes=eskaneatuUrl(urlId.getText());
+        return processes;
+    }
+
+    private List<String> eskaneatuUrl(String text) {
         List<String> processes = new LinkedList<String>();
         try {
             String line;
-            String line2;
-            Process p = null;
-            Process p2 = null;
-            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
+            Process p;
+            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+text;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
@@ -153,9 +180,9 @@ public class WWKud {
         } catch (Exception err) {
             err.printStackTrace();
         }
-
         return processes;
     }
+
 
     public WWKud() {
 
