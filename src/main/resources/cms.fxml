@@ -26,15 +26,15 @@
          <children>
             <TableView fx:id="tableId" prefHeight="426.0" prefWidth="912.0">
                <columns>
-                  <TableColumn fx:id="urlId" minWidth="-1.0" prefWidth="235.0" resizable="false" text="URL" />
-                  <TableColumn fx:id="httpServerId" minWidth="0.0" prefWidth="65.0" resizable="false" text="Server" />
-                  <TableColumn fx:id="countryID" prefWidth="76.0" resizable="false" text="Country" />
-                  <TableColumn fx:id="emailId" prefWidth="49.0" resizable="false" text="Email" />
-                  <TableColumn fx:id="ipId" prefWidth="34.0" resizable="false" text="Ip" />
-                  <TableColumn fx:id="cmsId" prefWidth="112.0" resizable="false" text="CMS" />
-                  <TableColumn fx:id="cmsVersionId" prefWidth="114.0" resizable="false" text="CMS Version" />
-                  <TableColumn fx:id="lastUpdateId" prefWidth="43.0" text="Last Updated" />
-                  <TableColumn fx:id="ezabatuId" prefWidth="75.0" />
+                  <TableColumn fx:id="urlId" minWidth="-1.0" prefWidth="188.0" resizable="false" text="URL" />
+                  <TableColumn fx:id="httpServerId" minWidth="0.0" prefWidth="130.0" resizable="false" text="Server" />
+                  <TableColumn fx:id="countryID" minWidth="0.0" prefWidth="0.0" resizable="false" text="Country" />
+                  <TableColumn fx:id="emailId" prefWidth="21.0" resizable="false" text="Email" />
+                  <TableColumn fx:id="ipId" prefWidth="133.0" resizable="false" text="Ip" />
+                  <TableColumn fx:id="cmsId" prefWidth="128.0" resizable="false" text="CMS" />
+                  <TableColumn fx:id="cmsVersionId" prefWidth="122.0" resizable="false" text="CMS Version" />
+                  <TableColumn fx:id="lastUpdateId" prefWidth="119.0" text="Last Updated" />
+                  <TableColumn fx:id="ezabatuId" prefWidth="149.0" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

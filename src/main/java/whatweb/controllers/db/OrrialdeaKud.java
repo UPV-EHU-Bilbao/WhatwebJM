@@ -34,12 +34,15 @@ public class OrrialdeaKud {
 
 
     public Orrialde getInformazioa(String url) throws SQLException, MalformedURLException{
-        ResultSet rs1, rs2;
+        ResultSet rs1, rs2,rs3,rs4;
+        Orrialde o = new Orrialde();
+        //TARGET-aren ID-A LORTZEKO:
         String targetidlortuquery = "select target_id,lastUpdate from targets where target='" + url + "'";
         rs1 = dbkud.execSQL(targetidlortuquery); //honekin target-aren id-a lortzen dugu
         Integer id = rs1.getInt("target_id");
-        Orrialde o = new Orrialde();
         o.setLastUpdate(rs1.getString("lastUpdate"));
+        o.setUrl(url);
+        //CMS ETA BERTSIOA LORTZEKO:
         String query = "select string from scans where (string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%') and target_id="+id;
         rs2 = dbkud.execSQL(query);
         if(rs2.next()){  //badaude cms-rik erabiltzen ez duten orrialdeak
@@ -50,7 +53,27 @@ public class OrrialdeaKud {
             o.setCms("Ez da zehazten");
             o.setCmsVersion("-");
         }
-        o.setUrl(url);
+
+        //ZERBITZARIA LORTZEKO
+        String severquery= "select string from scans where (string like 'Apache%' or string like '%nginx%') and target_id="+id;
+        rs3=dbkud.execSQL(severquery);
+        if(rs3.next()){
+            o.setHttpServer(rs3.getString("string"));
+        }
+        else{
+            o.setHttpServer("Ez da zehazten");
+        }
+
+        //IP-a LORTZEKO:
+        String ipquery= "SELECT * FROM scans WHERE string GLOB '[^a-zA-Z]*[0-999].[0-999]*' AND target_id="+id;
+        rs4=dbkud.execSQL(ipquery);
+        if(rs4.next()){
+            o.setIp(rs4.getString("string"));
+        }
+        else{
+            o.setHttpServer("Ez da zehazten");
+        }
+
 
         return o;
     }
@@ -97,8 +120,8 @@ public class OrrialdeaKud {
     }
 
     public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException {
-        String targetlortu = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
-        ResultSet rs;
+       String targetlortu = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
+       ResultSet rs;
         rs=dbkud.execSQL(targetlortu);
 
         List<Orrialde> emaitza = new ArrayList<Orrialde>();

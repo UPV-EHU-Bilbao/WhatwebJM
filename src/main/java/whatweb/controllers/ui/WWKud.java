@@ -117,13 +117,13 @@ public class WWKud {
             String line2;
             Process p = null;
             Process p2 = null;
-            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+urlId.getText() ;
+            String exek= "./whatweb --colour=never --log-sql=insertak.txt "+urlId.getText() ;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
             }
 
-            p = Runtime.getRuntime().exec(exek); //, null, new File("/opt/WhatWeb"));
+            p = Runtime.getRuntime().exec(exek, null, new File("/opt/WhatWeb"));
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -131,7 +131,7 @@ public class WWKud {
                 processes.add(line);
             }
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                    "src/main/resources/insertak.txt"));
+                    "/home/ena/insertak.txt"));
             String sqlAgindu = reader.readLine();
 
             Boolean aurkitua = false;
