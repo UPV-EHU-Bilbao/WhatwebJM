@@ -119,14 +119,11 @@ public class OrrialdeaKud {
         return emaitza;
     }
 
-    public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException {
-       String targetlortu = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%';";
-       ResultSet rs;
-        rs=dbkud.execSQL(targetlortu);
-
+    public List<Orrialde> bilatuOrrialdeak(String zerBilatu, String bilaketa) throws SQLException, MalformedURLException { //ez galdetu mesedez
         List<Orrialde> emaitza = new ArrayList<Orrialde>();
 
         if(!bilaketa.isEmpty()){
+            String targetlortu="";
             String cmsGabekoak="";
             switch(zerBilatu){
                 case "CMS":
@@ -136,7 +133,6 @@ public class OrrialdeaKud {
                 case "CMS Bertsioa": //CMS-ren berdina da izan ere datu basean datuak String bakar batean gordetzen dira, e.g.,"WordPress 5.4.2"
                     targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
                             " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
-                    System.out.println(targetlortu);
                     break;
                 case "URL": //bi bilaketa egin behar dira, CMS dutenak eta CMS ez dutenak
                     targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%'" +
@@ -148,7 +144,7 @@ public class OrrialdeaKud {
                             " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
                     break;
             }
-            ResultSet rs1;
+            ResultSet rs,rs1;
             rs=dbkud.execSQL(targetlortu);
 
             while(rs.next()){
@@ -165,6 +161,8 @@ public class OrrialdeaKud {
         }else{ //bilaketa hutsa badago, webgune guztiak lortuko ditugu
             emaitza= lortuOrrialdeak();
         }
+
+
         return emaitza;
     }
 
