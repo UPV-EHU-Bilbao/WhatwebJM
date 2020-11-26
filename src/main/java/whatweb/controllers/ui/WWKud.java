@@ -2,28 +2,21 @@ package whatweb.controllers.ui;
 
 import java.io.*;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import whatweb.App;
-import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
 
 public class WWKud {
@@ -78,8 +71,9 @@ public class WWKud {
         String lineaBerria = reader.readLine();
 
         while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
-            eskaneatuUrl(lineaBerria);
-            lineaBerria = reader.readLine();
+                eskaneatuUrl(lineaBerria);
+                lineaBerria= reader.readLine();
+
         }
 
     }
