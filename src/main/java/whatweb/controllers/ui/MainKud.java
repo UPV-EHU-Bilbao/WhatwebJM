@@ -54,6 +54,8 @@ public class MainKud {
 
     @FXML
     void serverClick(ActionEvent event) throws MalformedURLException, SQLException {
+        cmsAPid.toFront();
+        cmsAPid.requestFocus();
         app.serverErakutsi();
     }
 
