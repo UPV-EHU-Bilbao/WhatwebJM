@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -66,32 +67,16 @@ public class WWKud {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT fitxategiak", "*.txt")
         );
-        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow());
+        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow()); //zer sartu metodo honetan
         Reader targetReader = new FileReader(aukeratua);
         BufferedReader reader = new BufferedReader(targetReader);
+        String lineaBerria = reader.readLine();
 
+        while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
+            eskaneatuUrl(lineaBerria);
+            lineaBerria= reader.readLine();
 
-        Thread taskThread = new Thread(() -> {
-            String lineaBerria;
-            try {
-
-                lineaBerria= reader.readLine();
-
-                while (lineaBerria != null) {
-                    eskaneatuUrl(lineaBerria);
-                    Thread.sleep(2000);
-                    lineaBerria= reader.readLine();
-
-                }
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
-
-        });
-        taskThread.start();
-
+        }
 
     }
 
@@ -110,9 +95,13 @@ public class WWKud {
             Thread taskThread = new Thread(() -> {
                 String newLine = System.getProperty("line.separator");
                 final StringBuilder emaitza = new StringBuilder();
-                allProcesses().forEach( line -> {
-                    emaitza.append(line+newLine);
-                });
+                try {
+                    allProcesses().forEach( line -> {
+                        emaitza.append(line+newLine);
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 Platform.runLater(() -> {
                     logId.setText(emaitza.toString());
                 });
@@ -122,7 +111,7 @@ public class WWKud {
 
     }
     private void txertatu(String agindu) throws SQLException { //DATU BASEAN GORDE SCANERRAREN DATUAK
-    //irakurri insertak
+        //irakurri insertak
         // konpondu queryak
         //datu basean gorde
         agindu=agindu.replace(" IGNORE", " OR IGNORE");
@@ -144,33 +133,39 @@ public class WWKud {
 
     public void setMainApp(App p) { app = p; }
 
-    public List<String> allProcesses() {
+    public List<String> allProcesses() throws IOException {
         List<String> processes;
         processes=eskaneatuUrl(urlId.getText());
         return processes;
     }
 
-    private List<String> eskaneatuUrl(String text) {
+    private List<String> eskaneatuUrl(String text) throws IOException {
         List<String> processes = new LinkedList<String>();
+        Properties properties=new Properties();
+        InputStream in= null;
+
+        in = this.getClass().getResourceAsStream("/setup.properties");
+        properties.load(in);
         try {
             String line;
             Process p;
-            String exek= "./whatweb --colour=never --log-sql=/tmp/insertak.txt "+text;
+            String exek= "./whatweb --colour=never --log-sql="+properties.getProperty("filepath")+"insertak.txt "+text;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
             }
 
             System.out.println(exek);
-            p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb/"));
+            p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb"));
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
             }
+
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                    "/tmp/insertak.txt"));
+                   properties.getProperty("filepath")+"insertak.txt"));
             String sqlAgindu = reader.readLine();
 
             Boolean aurkitua = false;
