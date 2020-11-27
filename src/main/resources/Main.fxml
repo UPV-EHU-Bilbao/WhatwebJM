@@ -58,6 +58,9 @@
             <AnchorPane fx:id="nabigatzaileaId" prefHeight="730.0" prefWidth="978.0">
                <fx:include fx:id="nabId" source="./nabigatzaile.fxml" />
             </AnchorPane>
+            <AnchorPane fx:id="irudiaPane" prefHeight="200.0" prefWidth="200.0" >
+               <fx:include fx:id="irudiaId" source="./irudia.fxml" />
+            </AnchorPane>
          </children>
       </StackPane>
    </children>

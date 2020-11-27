@@ -140,6 +140,7 @@ public class CMSKud {
 
     private void takeScreenshoot(String helbidea) throws IOException {
         Image i = new Image("http://pereira.eus:4444/?page="+helbidea);
+        System.out.println("http://pereira.eus:4444/?page="+helbidea);
         app.irudiaErakutsi(i);
     }
 

@@ -45,6 +45,9 @@ public class MainKud {
     @FXML
     private AnchorPane nabigatzaileaId;
 
+    @FXML
+    private AnchorPane irudiaPane;
+
     private App app;
 
     @FXML
@@ -93,5 +96,9 @@ public class MainKud {
 
     public void cmsErakusti() {
         cmsAPid.toFront();
+    }
+
+    public void irudiaErakutsi() {
+        irudiaPane.toFront();
     }
 }

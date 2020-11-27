@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import whatweb.App;
 
 public class IrudiKud {
 
@@ -19,10 +20,17 @@ public class IrudiKud {
 
     private Image irudia;
 
+    private App app;
+
+    public IrudiKud(App a) { app = a;}
+
     @FXML
     void initialize() {
-        irudiaId.setImage(irudia);
+
     }
 
-    public void setImage(Image i) {irudia = i; }
+    public void setImage(Image i) {
+        irudia = i;
+        irudiaId.setImage(irudia);
+    }
 }

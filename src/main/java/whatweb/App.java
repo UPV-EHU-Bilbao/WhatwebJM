@@ -10,15 +10,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import whatweb.controllers.db.DBKud;
-import whatweb.controllers.db.OrrialdeaKud;
 import whatweb.controllers.ui.*;
-import whatweb.model.Orrialde;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
-import java.util.List;
 
 import static javafx.application.Application.launch;
 
@@ -37,8 +33,6 @@ public class App extends Application {
     private IrudiKud irudiKud;
 
     private Scene mainScene;
-    private Scene irudiaScene;
-    private Parent irudiUI;
 
 
     public void start(Stage primaryStage) throws Exception {
@@ -59,6 +53,7 @@ public class App extends Application {
         whatWebKud = new WWKud();
         cmsKud = new CMSKud(this);
         nabKud = new NabKud(this);
+        irudiKud = new IrudiKud(this);
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == MainKud.class) {
@@ -69,7 +64,10 @@ public class App extends Application {
                 return cmsKud;
             } else if (type == NabKud.class){
                 return nabKud;
+            } else if (type == IrudiKud.class){
+                return irudiKud;
             }
+
             else {
                 // default behavior for controllerFactory:
                 try {
@@ -90,7 +88,6 @@ public class App extends Application {
     }
 
     public void hasieraKargatu(){
-        stage.setTitle("What Web");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -111,13 +108,9 @@ public class App extends Application {
         cmsKud.serverErakutsi();
     }
 
-    public void irudiaErakutsi(Image i) throws IOException {
-        FXMLLoader loaderIrudia = new FXMLLoader(getClass().getResource("/irudia.fxml"));
-        irudiUI = (Parent) loaderIrudia.load();
-        irudiKud = loaderIrudia.getController();
+    public void irudiaErakutsi(Image i){
         irudiKud.setImage(i);
-        irudiaScene = new Scene(irudiUI,1000,732);
-        stageIrudia.setScene(irudiaScene);
-        stageIrudia.show();
+        mainKud.irudiaErakutsi();
     }
+
 }
