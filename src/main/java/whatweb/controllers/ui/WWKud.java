@@ -2,6 +2,7 @@ package whatweb.controllers.ui;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -154,14 +155,14 @@ public class WWKud {
         try {
             String line;
             Process p;
-            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+text;
+            String exek= "./whatweb --colour=never --log-sql=/tmp/insertak.txt "+text;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
             }
 
             System.out.println(exek);
-            p = Runtime.getRuntime().exec(exek);
+            p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb/"));
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -169,7 +170,7 @@ public class WWKud {
                 processes.add(line);
             }
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                    "src/main/resources/insertak.txt"));
+                    "/tmp/insertak.txt"));
             String sqlAgindu = reader.readLine();
 
             Boolean aurkitua = false;
@@ -185,7 +186,7 @@ public class WWKud {
                 }
                 sqlAgindu = reader.readLine();
             }
-            Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt");
+            Files.deleteIfExists( new File("/tmp/insertak.txt" ).toPath());
             input.close();
         } catch (Exception err) {
             err.printStackTrace();
