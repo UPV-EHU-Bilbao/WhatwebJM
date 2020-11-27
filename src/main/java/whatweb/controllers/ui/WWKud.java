@@ -2,7 +2,6 @@ package whatweb.controllers.ui;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,16 +65,32 @@ public class WWKud {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT fitxategiak", "*.txt")
         );
-        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow()); //zer sartu metodo honetan
+        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow());
         Reader targetReader = new FileReader(aukeratua);
         BufferedReader reader = new BufferedReader(targetReader);
-        String lineaBerria = reader.readLine();
 
-        while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
-                eskaneatuUrl(lineaBerria);
+
+        Thread taskThread = new Thread(() -> {
+            String lineaBerria;
+            try {
+
                 lineaBerria= reader.readLine();
 
-        }
+                while (lineaBerria != null) {
+                    eskaneatuUrl(lineaBerria);
+                    Thread.sleep(2000);
+                    lineaBerria= reader.readLine();
+
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+
+        });
+        taskThread.start();
+
 
     }
 
@@ -139,14 +154,14 @@ public class WWKud {
         try {
             String line;
             Process p;
-            String exek= "./whatweb --colour=never --log-sql=/tmp/insertak.txt "+text;
+            String exek= "whatweb --colour=never --log-sql=src/main/resources/insertak.txt "+text;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
                 exek = "wsl"+exek;
             }
 
             System.out.println(exek);
-            p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb"));
+            p = Runtime.getRuntime().exec(exek);
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -154,7 +169,7 @@ public class WWKud {
                 processes.add(line);
             }
             BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                    "/tmp/insertak.txt"));
+                    "src/main/resources/insertak.txt"));
             String sqlAgindu = reader.readLine();
 
             Boolean aurkitua = false;
@@ -170,7 +185,7 @@ public class WWKud {
                 }
                 sqlAgindu = reader.readLine();
             }
-            Files.deleteIfExists( new File("/tmp/insertak.txt" ).toPath());
+            Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt");
             input.close();
         } catch (Exception err) {
             err.printStackTrace();
