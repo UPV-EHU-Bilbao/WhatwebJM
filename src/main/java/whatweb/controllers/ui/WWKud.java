@@ -65,16 +65,32 @@ public class WWKud {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT fitxategiak", "*.txt")
         );
-        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow()); //zer sartu metodo honetan
+        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow());
         Reader targetReader = new FileReader(aukeratua);
         BufferedReader reader = new BufferedReader(targetReader);
-        String lineaBerria = reader.readLine();
 
-        while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
-                eskaneatuUrl(lineaBerria);
+
+        Thread taskThread = new Thread(() -> {
+            String lineaBerria;
+            try {
+
                 lineaBerria= reader.readLine();
 
-        }
+                while (lineaBerria != null) {
+                    eskaneatuUrl(lineaBerria);
+                    Thread.sleep(2000);
+                    lineaBerria= reader.readLine();
+
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+
+        });
+        taskThread.start();
+
 
     }
 
@@ -169,7 +185,7 @@ public class WWKud {
                 }
                 sqlAgindu = reader.readLine();
             }
-            Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt"); //sortutako fitxategia ezabatu
+            Runtime.getRuntime().exec( "rm src/main/resources/insertak.txt");
             input.close();
         } catch (Exception err) {
             err.printStackTrace();
