@@ -42,6 +42,6 @@
 
       </ImageView>
       <Text layoutX="54.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FItxategi bat igo:" />
-      <Button fx:id="eskaneatuFitxId" layoutX="180.0" layoutY="617.0" mnemonicParsing="false" onAction="#fileClick" text="Escaneatu" textFill="WHITE" />
+      <Button fx:id="eskaneatuFitxId" layoutX="180.0" layoutY="617.0" mnemonicParsing="false" onAction="#fileClick" text="Eskaneatu" textFill="WHITE" />
    </children>
 </AnchorPane>
