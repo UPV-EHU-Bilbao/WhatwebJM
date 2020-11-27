@@ -31,7 +31,6 @@ public class App extends Application {
     private MainKud mainKud;
     private WWKud whatWebKud;
     private CMSKud cmsKud;
-    private ServerKud serverKud;
     private NabKud nabKud;
 
     private Scene mainScene;
@@ -54,7 +53,6 @@ public class App extends Application {
         mainKud = new MainKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WWKud();
         cmsKud = new CMSKud(this);
-        serverKud= new ServerKud();
         nabKud = new NabKud(this);
 
         Callback<Class<?>, Object> controllerFactory = type -> {
@@ -64,8 +62,6 @@ public class App extends Application {
                 return whatWebKud;
             } else if (type == CMSKud.class) {
                 return cmsKud;
-            } else if (type == ServerKud.class) {
-                return serverKud;
             } else if (type == NabKud.class){
                 return nabKud;
             }
