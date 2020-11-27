@@ -80,6 +80,12 @@ public class CMSKud {
     private OrrialdeaKud ok = OrrialdeaKud.getInstantzia();
     private List<Orrialde> orrialdeak;
 
+    private ContextMenu cm = new ContextMenu();
+
+    private MenuItem m1 = new MenuItem("Ezabatu");
+    private MenuItem m2 = new MenuItem("Orrialdea ireki");
+    private MenuItem m3 = new MenuItem("Screenshoot bat atera");
+
 
     public CMSKud(App a) {
         this.app=a;
@@ -143,22 +149,17 @@ public class CMSKud {
         });
 
 
+        menuaKargatu();
 
         kargatu();
         setComboBoxa();
 
-        menuaKargatu();
 
     }
 
     private void menuaKargatu() {
-        ContextMenu cm = new ContextMenu();
 
-        MenuItem m1 = new MenuItem("Ezabatu");
-        MenuItem m2 = new MenuItem("Orrialdea ireki");
-        MenuItem m3 = new MenuItem("Screenshoot bat atera");
-
-        m1.setOnAction(col -> {
+        m1.setOnAction(col -> { //Ezabatu
             String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
             try {
                 ezabatuHelbidea(helbidea);
@@ -167,15 +168,17 @@ public class CMSKud {
             }
         });
 
-        m2.setOnAction(col -> {
+        m2.setOnAction(col -> { //Orrialdea ireki
             String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
             app.erakNab(helbidea);
         });
 
-        m3.setOnAction( col -> {
+        m3.setOnAction( col -> { //Screenshot-a atera
             String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
             //Screenshota ateratzeko metodoa
         });
+
+
         cm.getItems().addAll(m1,m2,m3);
     }
 
@@ -240,7 +243,6 @@ public class CMSKud {
 
         cmsLabel.setText("Server");
         wordpressLabel.setText("");
-
 
     }
 }
