@@ -100,24 +100,6 @@ public class CMSKud {
 
         Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 
-
-        urlId.setCellFactory(kol -> {
-            TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
-
-            cell.setOnMouseClicked(event -> {
-                if (! cell.isEmpty()) {
-                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
-                    app.erakNab(helbidea);
-                }
-
-
-            });
-
-
-            return cell ;
-        });
-
-
         menuaKargatu();
         kargatu();
         setComboBoxa();
