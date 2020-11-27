@@ -73,8 +73,6 @@ public class OrrialdeaKud {
         else{
             o.setIp("Ez da zehazten");
         }
-
-
         return o;
     }
 
