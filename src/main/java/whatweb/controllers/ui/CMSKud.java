@@ -129,7 +129,7 @@ public class CMSKud {
         });
         urlId.setCellFactory(kol -> {
             TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
-/*
+
             cell.setOnMouseClicked(event -> {
                 if (! cell.isEmpty()) {
                     String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
@@ -137,7 +137,7 @@ public class CMSKud {
                 }
             });
 
- */
+
 
             return cell ;
         });
@@ -147,6 +147,11 @@ public class CMSKud {
         kargatu();
         setComboBoxa();
 
+        menuaKargatu();
+
+    }
+
+    private void menuaKargatu() {
         ContextMenu cm = new ContextMenu();
 
         MenuItem m1 = new MenuItem("Ezabatu");
@@ -172,7 +177,6 @@ public class CMSKud {
             //Screenshota ateratzeko metodoa
         });
         cm.getItems().addAll(m1,m2,m3);
-
     }
 
     public void kargatu() throws MalformedURLException, SQLException {
