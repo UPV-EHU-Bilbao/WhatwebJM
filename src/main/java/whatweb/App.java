@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import whatweb.controllers.db.DBKud;
 import whatweb.controllers.db.OrrialdeaKud;
@@ -34,7 +35,6 @@ public class App extends Application {
     private NabKud nabKud;
 
     private Scene mainScene;
-    private Scene sceneNab;
 
 
     public void start(Stage primaryStage) throws Exception {
@@ -42,6 +42,7 @@ public class App extends Application {
         stage = primaryStage;
         pantailakKargatu();
         mainScene = new Scene(mainUI,1000,732);
+        stage.initStyle(StageStyle.UNDECORATED);
         hasieraKargatu();
 
     }

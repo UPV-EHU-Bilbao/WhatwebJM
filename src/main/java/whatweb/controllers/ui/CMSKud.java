@@ -25,12 +25,6 @@ import whatweb.model.Orrialde;
 public class CMSKud {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TableView<Orrialde> tableId;
 
     @FXML
@@ -61,10 +55,6 @@ public class CMSKud {
 
     @FXML
     private TextField urlField;
-
-    @FXML
-    private TableColumn<Orrialde, String> ezabatuId;
-
 
     @FXML
     private TableColumn<Orrialde, Date> lastUpdateId;
@@ -102,7 +92,6 @@ public class CMSKud {
         cmsId.setCellValueFactory(new PropertyValueFactory<>("cms"));
         urlId.setCellValueFactory(new PropertyValueFactory<>("url"));
         cmsVersionId.setCellValueFactory(new PropertyValueFactory<>("cmsVersion"));
-        ezabatuId.setCellValueFactory(new PropertyValueFactory<>("ezabatu"));
         lastUpdateId.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
         emailId.setCellValueFactory(new PropertyValueFactory<>("email"));
         ipId.setCellValueFactory(new PropertyValueFactory<>("ip"));
@@ -111,28 +100,7 @@ public class CMSKud {
 
         Callback<TableColumn<Orrialde, String>, TableCell<Orrialde, String>> defaultTextFieldCellFactory = TextFieldTableCell.<Orrialde>forTableColumn();
 
-        ezabatuId.setCellFactory(col -> {
-            TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(col);
 
-            cell.setOnMouseClicked(event -> {
-                if (! cell.isEmpty()) {
-                    String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
-                    try {
-                        ezabatuHelbidea(helbidea);
-                        kargatu();
-                    } catch (SQLException | MalformedURLException throwables) {
-                        throwables.printStackTrace();
-                    }
-
-                }
-            });
-
-
-
-            return cell ;
-
-
-        });
         urlId.setCellFactory(kol -> {
             TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
 
@@ -141,8 +109,9 @@ public class CMSKud {
                     String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
                     app.erakNab(helbidea);
                 }
-            });
 
+
+            });
 
 
             return cell ;
@@ -150,10 +119,8 @@ public class CMSKud {
 
 
         menuaKargatu();
-
         kargatu();
         setComboBoxa();
-
 
     }
 
@@ -180,6 +147,7 @@ public class CMSKud {
 
 
         cm.getItems().addAll(m1,m2,m3);
+        tableId.setContextMenu(cm); //Taulan Context Menu txertatu
     }
 
     public void kargatu() throws MalformedURLException, SQLException {
