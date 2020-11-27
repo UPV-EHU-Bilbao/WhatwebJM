@@ -1,5 +1,6 @@
 package whatweb.controllers.ui;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.util.Callback;
 import whatweb.App;
 import whatweb.controllers.db.OrrialdeaKud;
@@ -112,7 +114,7 @@ public class CMSKud {
             String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
             try {
                 ezabatuHelbidea(helbidea);
-            } catch (SQLException throwables) {
+            } catch (SQLException | MalformedURLException throwables) {
                 throwables.printStackTrace();
             }
         });
@@ -124,12 +126,21 @@ public class CMSKud {
 
         m3.setOnAction( col -> { //Screenshot-a atera
             String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
-            //Screenshota ateratzeko metodoa
+            try {
+              takeScreenshoot(helbidea);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
 
         cm.getItems().addAll(m1,m2,m3);
         tableId.setContextMenu(cm); //Taulan Context Menu txertatu
+    }
+
+    private void takeScreenshoot(String helbidea) throws IOException {
+        Image i = new Image("http://pereira.eus:4444/?page="+helbidea);
+        app.irudiaErakutsi(i);
     }
 
     public void kargatu() throws MalformedURLException, SQLException {
@@ -151,8 +162,9 @@ public class CMSKud {
 
     }
 
-    private void ezabatuHelbidea(String helbidea) throws SQLException {
+    private void ezabatuHelbidea(String helbidea) throws SQLException, MalformedURLException {
         ok.ezabatuHelbidea(helbidea);
+        kargatu();
     }
 
     public void setLista(List<Orrialde> plista) {

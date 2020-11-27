@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -27,14 +28,17 @@ public class App extends Application {
     private Parent nabUI;
 
     private Stage stage;
-    private Stage stageNab;
+    private Stage stageIrudia;
 
     private MainKud mainKud;
     private WWKud whatWebKud;
     private CMSKud cmsKud;
     private NabKud nabKud;
+    private IrudiKud irudiKud;
 
     private Scene mainScene;
+    private Scene irudiaScene;
+    private Parent irudiUI;
 
 
     public void start(Stage primaryStage) throws Exception {
@@ -105,5 +109,15 @@ public class App extends Application {
 
     public void serverErakutsi() {
         cmsKud.serverErakutsi();
+    }
+
+    public void irudiaErakutsi(Image i) throws IOException {
+        FXMLLoader loaderIrudia = new FXMLLoader(getClass().getResource("/irudia.fxml"));
+        irudiUI = (Parent) loaderIrudia.load();
+        irudiKud = loaderIrudia.getController();
+        irudiKud.setImage(i);
+        irudiaScene = new Scene(irudiUI,1000,732);
+        stageIrudia.setScene(irudiaScene);
+        stageIrudia.show();
     }
 }
