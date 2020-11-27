@@ -121,19 +121,23 @@ public class CMSKud {
                 }
             });
 
+
+
             return cell ;
 
 
         });
         urlId.setCellFactory(kol -> {
             TableCell<Orrialde, String> cell = defaultTextFieldCellFactory.call(kol);
-
+/*
             cell.setOnMouseClicked(event -> {
                 if (! cell.isEmpty()) {
                     String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
                     app.erakNab(helbidea);
                 }
             });
+
+ */
 
             return cell ;
         });
@@ -142,6 +146,32 @@ public class CMSKud {
 
         kargatu();
         setComboBoxa();
+
+        ContextMenu cm = new ContextMenu();
+
+        MenuItem m1 = new MenuItem("Ezabatu");
+        MenuItem m2 = new MenuItem("Orrialdea ireki");
+        MenuItem m3 = new MenuItem("Screenshoot bat atera");
+
+        m1.setOnAction(col -> {
+            String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
+            try {
+                ezabatuHelbidea(helbidea);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        m2.setOnAction(col -> {
+            String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
+            app.erakNab(helbidea);
+        });
+
+        m3.setOnAction( col -> {
+            String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
+            //Screenshota ateratzeko metodoa
+        });
+        cm.getItems().addAll(m1,m2,m3);
 
     }
 
