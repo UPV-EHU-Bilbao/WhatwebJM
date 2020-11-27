@@ -23,6 +23,11 @@
                         <FontAwesomeIconView fill="#f2f0f0" glyphName="CLOUD" />
                      </graphic>
                   </Label>
+                  <FontAwesomeIconView fx:id="crossLabel" fill="WHITE" glyphName="TIMES" layoutX="24.0" layoutY="23.0" onMouseClicked="#ateraClick" wrappingWidth="14.300000190734863">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </FontAwesomeIconView>
                </children>
             </Pane>
             <Button fx:id="cmsButtonId" graphicTextGap="8.0" mnemonicParsing="false" onAction="#cmsClick" prefHeight="76.0" prefWidth="280.0" text="CMS" textFill="#fcfcfc">

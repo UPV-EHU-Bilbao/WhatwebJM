@@ -141,8 +141,9 @@ public class CMSKud {
                     String helbidea = cell.getTableView().getSelectionModel().getSelectedItem().getUrl();
                     app.erakNab(helbidea);
                 }
-            });
 
+
+            });
 
 
             return cell ;
@@ -150,10 +151,8 @@ public class CMSKud {
 
 
         menuaKargatu();
-
         kargatu();
         setComboBoxa();
-
 
     }
 
@@ -180,6 +179,7 @@ public class CMSKud {
 
 
         cm.getItems().addAll(m1,m2,m3);
+        tableId.setContextMenu(cm); //Taulan Context Menu txertatu
     }
 
     public void kargatu() throws MalformedURLException, SQLException {

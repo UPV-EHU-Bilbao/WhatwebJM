@@ -3,6 +3,7 @@ package whatweb.controllers.ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import whatweb.App;
@@ -34,6 +35,9 @@ public class MainKud {
     @FXML
     private AnchorPane serverAPId;
 
+    @FXML
+    private Label xLabel;
+
 
     @FXML
     private AnchorPane whatwebAPid;
@@ -63,6 +67,11 @@ public class MainKud {
     void whatWebClick(ActionEvent event) throws MalformedURLException, SQLException {
         whatwebAPid.toFront();
         whatwebAPid.requestFocus();
+    }
+
+    @FXML
+    void ateraClick(){
+        System.exit(0);
     }
 
 
