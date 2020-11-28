@@ -156,7 +156,7 @@ public class WWKud {
             String exek= "./whatweb --colour=never --log-sql="+properties.getProperty("filepath")+"insertak.txt "+text;
 
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
-                exek = "wsl"+exek;
+                exek = "wsl "+exek;
             }
 
             System.out.println(exek);
