@@ -1,8 +1,10 @@
 package whatweb.controllers.ui;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -139,8 +141,15 @@ public class CMSKud {
     }
 
     private void takeScreenshoot(String helbidea) throws IOException {
-        Image i = new Image("http://pereira.eus:4444/?page="+helbidea);
-        System.out.println("http://pereira.eus:4444/?page="+helbidea);
+        URLConnection conn = new URL("http://pereira.eus:4444/?page="+helbidea).openConnection();
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
+        try (InputStream stream = conn.getInputStream()) {
+        }
+        if(helbidea.charAt(helbidea.length()-1)!='/'){
+            helbidea=helbidea+'/';
+        }
+        Image i = new Image("http://pereira.eus:4444/"+helbidea.replace("https://","")+"kaptura.png",800,790,false,false);
+        System.out.println("http://pereira.eus:4444/"+helbidea.replace("https://","")+"kaptura.png");
         app.irudiaErakutsi(i);
     }
 
