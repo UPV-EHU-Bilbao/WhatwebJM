@@ -171,4 +171,16 @@ public class OrrialdeaKud {
         return id;
 
     }
+
+    public void konprobatuURl(String lortuUrl) throws SQLException {
+        String konprobatuQuery = "select target_id from targets where target glob '*"+lortuUrl+"*'";
+        ResultSet rs = dbkud.execSQL(konprobatuQuery);
+        if(rs.next()){
+            String id = rs.getString("target_id");
+            String deleteScans = "delete from Scans where target_id = "+id;
+            dbkud.execSQL(deleteScans);
+            String deleteTarget = "delete from targets where target_id = "+id;
+            dbkud.execSQL(deleteTarget);
+        }
+    }
 }

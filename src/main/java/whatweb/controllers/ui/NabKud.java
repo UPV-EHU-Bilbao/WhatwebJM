@@ -65,15 +65,25 @@ public class NabKud {
             String line;
             Process p = null;
             String exek = "";
-            if(!nab){
-                exek = "firefox " + url;
-            }
-            else{
-                exek = "google-chrome " + url;
-            }
+
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
-                exek = "wsl "+exek;
+                if(!nab){
+                    exek = "start firefox " + url;
+                }
+                else{
+                    exek = "start chrome " + url;
+                }
+
+            }else{
+                if(!nab){
+                    exek = "firefox " + url;
+                }
+                else{
+                    exek = "google-chrome " + url;
+                }
+
             }
+
 
             p = Runtime.getRuntime().exec(exek);
             app.cmsErakutsi();

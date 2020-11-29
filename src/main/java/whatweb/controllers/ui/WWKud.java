@@ -147,7 +147,6 @@ public class WWKud {
         List<String> processes = new LinkedList<String>();
         Properties properties=new Properties();
         InputStream in= null;
-
         in = this.getClass().getResourceAsStream("/setup.properties");
         properties.load(in);
         try {
@@ -175,10 +174,13 @@ public class WWKud {
             Boolean aurkitua = false;
             while (sqlAgindu != null) {
                 if(aurkitua){
-                    System.out.println(sqlAgindu);
+                    //System.out.println(sqlAgindu);
                     txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                 }else{
                     if(sqlAgindu.contains("200")){
+                        System.out.println(sqlAgindu);
+                        String lortuUrl = sqlAgindu.split("//")[1].split("/")[0];
+                        orkud.konprobatuURl(lortuUrl);
                         txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                         aurkitua=true;
                     }
