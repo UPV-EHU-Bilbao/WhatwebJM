@@ -193,7 +193,8 @@ public class WWKud {
                 }else{
                     if(sqlAgindu.contains("200")){
                         System.out.println(sqlAgindu);
-                        String lortuUrl = sqlAgindu.split("//")[1].split("/")[0];
+                        String lortuUrl = sqlAgindu.split("//")[1].split("/")[0].split("'\\)")[0];
+                        System.out.println(lortuUrl);
                         orkud.konprobatuURl(lortuUrl);
                         txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                         aurkitua=true;
