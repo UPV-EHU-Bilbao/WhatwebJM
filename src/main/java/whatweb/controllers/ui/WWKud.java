@@ -71,7 +71,6 @@ public class WWKud {
         Reader targetReader = new FileReader(aukeratua);
         BufferedReader reader = new BufferedReader(targetReader);
 
-
         Thread taskThread = new Thread(() -> {
             String lineaBerria;
             try {
