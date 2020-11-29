@@ -61,7 +61,7 @@ public class WWKud {
 
     private OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
 
-
+@FXML
     void fileClick(ActionEvent event) throws IOException, SQLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
