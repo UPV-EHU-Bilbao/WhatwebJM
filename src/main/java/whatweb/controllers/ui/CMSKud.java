@@ -141,15 +141,21 @@ public class CMSKud {
     }
 
     private void takeScreenshoot(String helbidea) throws IOException {
+        if(helbidea.contains("https")){
+            helbidea=helbidea.replace("https://","");
+        }else{
+            helbidea=helbidea.replace("http://","");
+        }
+
         URLConnection conn = new URL("http://pereira.eus:4444/?page="+helbidea).openConnection();
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
         try (InputStream stream = conn.getInputStream()) {
         }
+        System.out.println(conn.toString());
         if(helbidea.charAt(helbidea.length()-1)!='/'){
             helbidea=helbidea+'/';
         }
-        Image i = new Image("http://pereira.eus:4444/"+helbidea.replace("https://","")+"kaptura.png",800,790,false,false);
-        System.out.println("http://pereira.eus:4444/"+helbidea.replace("https://","")+"kaptura.png");
+        Image i = new Image("http://pereira.eus:4444/"+helbidea+"kaptura.png",800,790,false,false);
         app.irudiaErakutsi(i);
     }
 
