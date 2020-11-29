@@ -62,22 +62,37 @@ public class WWKud {
     private OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
 
 
-    @FXML
     void fileClick(ActionEvent event) throws IOException, SQLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT fitxategiak", "*.txt")
         );
-        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow()); //zer sartu metodo honetan
+        File aukeratua = fileChooser.showOpenDialog(eskaneatuFitxId.getScene().getWindow());
         Reader targetReader = new FileReader(aukeratua);
         BufferedReader reader = new BufferedReader(targetReader);
-        String lineaBerria = reader.readLine();
 
-        while (lineaBerria != null) { //uste dut hariak/prozesuak erabili behar direla
-            eskaneatuUrl(lineaBerria);
-            lineaBerria= reader.readLine();
 
-        }
+        Thread taskThread = new Thread(() -> {
+            String lineaBerria;
+            try {
+
+                lineaBerria= reader.readLine();
+
+                while (lineaBerria != null) {
+                    eskaneatuUrl(lineaBerria);
+                    Thread.sleep(3000);
+                    lineaBerria= reader.readLine();
+
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+
+        });
+        taskThread.start();
+
 
     }
 
