@@ -1,3 +1,4 @@
+
 open module whatweb {
 
     requires de.jensd.fx.fontawesomefx.fontawesome;
@@ -6,6 +7,7 @@ open module whatweb {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
+    requires sqlite.jdbc;
 
     exports whatweb;
 }
