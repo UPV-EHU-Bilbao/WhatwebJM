@@ -131,6 +131,7 @@ public class WWKud {
         // konpondu queryak
         //datu basean gorde
         agindu=agindu.replace(" IGNORE", " OR IGNORE");
+        System.out.println(agindu);
         orkud.txertatuDatuak(agindu);
         String id= orkud.idLortu();
         if(agindu.toLowerCase().contains("targets")){
@@ -199,7 +200,7 @@ public class WWKud {
                     txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
                 }else{
                     if(sqlAgindu.contains("200")){
-                        System.out.println(sqlAgindu);
+
                         String lortuUrl = sqlAgindu.split("//")[1].split("/")[0].split("'\\)")[0];
                         System.out.println(lortuUrl);
                         orkud.konprobatuURl(lortuUrl);
