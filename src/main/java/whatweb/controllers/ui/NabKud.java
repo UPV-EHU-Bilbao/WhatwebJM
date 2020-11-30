@@ -68,10 +68,10 @@ public class NabKud {
 
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
                 if(!nab){
-                    exek = "start firefox " + url;
+                    exek = "\"C:\\Program Files\\Mozilla Firefox\\firefox.exe\" "+url;
                 }
                 else{
-                    exek = "start chrome " + url;
+                    exek = "\"C:\\Program Files\\Google\\Chrome\\Application\" " + url;
                 }
 
             }else{
@@ -83,7 +83,7 @@ public class NabKud {
                 }
 
             }
-
+            System.out.println(exek);
 
             p = Runtime.getRuntime().exec(exek);
             app.cmsErakutsi();

@@ -122,7 +122,7 @@ public class OrrialdeaKud {
 
         if(!bilaketa.isEmpty()){
             String targetlortu="";
-            String cmsGabekoak="";
+            String cmsaBerdinDu="";
             switch(zerBilatu){
                 case "CMS":
                     targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
@@ -133,9 +133,9 @@ public class OrrialdeaKud {
                             " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
                     break;
                 case "URL": //bi bilaketa egin behar dira, CMS dutenak eta CMS ez dutenak
-                    targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%'" +
-                            " and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
-                    cmsGabekoak = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%' group by scans.target_id";
+                    //targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%'" +
+                            //" and scans.string like '%WordPress%' or string like '%Joomla%' or string like '%phpMyAdmin%'or string like '%Drupal%'";
+                    cmsaBerdinDu = "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and targets.target like '%"+bilaketa+"%' group by scans.target_id";
                     break;
                 default:
                     targetlortu= "select target,string,lastUpdate from targets join scans on targets.target_id=scans.target_id where targets.status=200 and scans.string like '%"+bilaketa+"%'" +
@@ -145,17 +145,21 @@ public class OrrialdeaKud {
             ResultSet rs,rs1;
             rs=dbkud.execSQL(targetlortu);
 
-            while(rs.next()){
-                String url= rs.getString("target");
-                emaitza.add(getInformazioa(url));
-            }
+
             if(zerBilatu=="URL"){ //url-ak bilatzen bagaude, CMS gabeko orriak bilatuko ditugu bebai
-                rs1=dbkud.execSQL(cmsGabekoak);
+                rs1=dbkud.execSQL(cmsaBerdinDu);
                 while(rs1.next()){
                     String url= rs1.getString("target");
                     emaitza.add(getInformazioa(url));
                 }
+            }else{
+                while(rs.next()){
+                    String url= rs.getString("target");
+                    emaitza.add(getInformazioa(url));
+                }
             }
+
+
         }else{ //bilaketa hutsa badago, webgune guztiak lortuko ditugu
             emaitza= lortuOrrialdeak();
         }

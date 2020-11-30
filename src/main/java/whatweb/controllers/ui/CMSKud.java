@@ -140,19 +140,20 @@ public class CMSKud {
         tableId.setContextMenu(cm); //Taulan Context Menu txertatu
     }
 
-    private void takeScreenshoot(String helbidea) throws IOException {
-        String helbideZuzena="";
+    private void takeScreenshoot(String helbidea) throws IOException { //metodo hau berregin behar da
+
+        URLConnection conn = new URL("http://pereira.eus:4444/?page="+helbidea).openConnection(); //ez dakit beheko komando beharrezkoa den
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
+        try (InputStream stream = conn.getInputStream()) {
+        }
+        System.out.println("http://pereira.eus:4444/?page="+helbidea);
+        String helbideZuzena=""; //string hauek ondo konpondu behar dira oraindik
         if(helbidea.contains("https://")){
             helbideZuzena=helbidea.split("https://")[1];
         }else if(helbidea.contains("http://")){
             helbideZuzena=helbidea.split("http://")[1];
         }
-        //agian beheko helbidea ez du lan egiten
-        URLConnection conn = new URL("http://pereira.eus:4444/?page="+helbideZuzena).openConnection();
-        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
-        try (InputStream stream = conn.getInputStream()) {
-        }
-        if(helbidea.charAt(helbidea.length()-1)!='/'){
+        if(helbideZuzena.charAt(helbideZuzena.length()-1)!='/'){
             helbideZuzena=helbideZuzena+'/';
         }
         Image i = new Image("http://pereira.eus:4444/"+helbideZuzena+"kaptura.png",800,790,false,false);

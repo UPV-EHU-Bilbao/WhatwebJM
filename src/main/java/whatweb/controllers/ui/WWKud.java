@@ -166,25 +166,32 @@ public class WWKud {
         try {
             String line;
             Process p;
-            String exek= "./whatweb --colour=never --log-sql="+properties.getProperty("filepath")+"insertak.txt "+text;
 
+            String exek="";
             if(System.getProperty("os.name").toLowerCase().contains("win")) {
-                exek = "wsl "+exek;
+                exek = "wsl whatweb --colour=never --log-sql=/mnt/c"+properties.getProperty("filepath")+"insertak.txt "+text;
+                p = Runtime.getRuntime().exec(exek);
+            }else{
+                exek= "./whatweb --colour=never --log-sql="+properties.getProperty("filepath")+"insertak.txt "+text;
+                p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb"));
             }
 
-            System.out.println(exek);
-            p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb"));
 
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
             }
+            BufferedReader reader;
+            if(System.getProperty("os.name").toLowerCase().contains("win")) {
+                reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
+                        "c:\\"+properties.getProperty("filepath")+"insertak.txt"));
+            }else{
+                reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
+                        properties.getProperty("filepath")+"insertak.txt"));
 
-            BufferedReader reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
-                   properties.getProperty("filepath")+"insertak.txt"));
+            }
             String sqlAgindu = reader.readLine();
-
             Boolean aurkitua = false;
             while (sqlAgindu != null) {
                 if(aurkitua){
@@ -202,11 +209,13 @@ public class WWKud {
                 }
                 sqlAgindu = reader.readLine();
             }
-            Files.deleteIfExists( new File("/tmp/insertak.txt" ).toPath());
             input.close();
+            reader.close();
         } catch (Exception err) {
             err.printStackTrace();
         }
+
+        Files.deleteIfExists( new File("/tmp/insertak.txt" ).toPath());
         return processes;
     }
 
