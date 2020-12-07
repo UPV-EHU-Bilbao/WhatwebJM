@@ -55,7 +55,7 @@ public class OrrialdeaKud {
         }
 
         //ZERBITZARIA LORTZEKO
-        String severquery= "select string from scans where (string like 'Apache%' or string like '%nginx%') and target_id="+id;
+        String severquery= "select string from scans where plugin_id=295 and target_id="+id;
         rs3=dbkud.execSQL(severquery);
         if(rs3.next()){
             o.setHttpServer(rs3.getString("string"));
@@ -65,7 +65,7 @@ public class OrrialdeaKud {
         }
 
         //IP-a LORTZEKO:
-        String ipquery= "SELECT * FROM scans WHERE string GLOB '[^a-zA-Z]*[0-999].[0-999]*' AND target_id="+id;
+        String ipquery= "select string from scans where plugin_id=457 and target_id="+id;
         rs4=dbkud.execSQL(ipquery);
         if(rs4.next()){
             o.setIp(rs4.getString("string"));
