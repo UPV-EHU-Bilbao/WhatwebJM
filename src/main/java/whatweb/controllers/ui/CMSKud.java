@@ -127,12 +127,15 @@ public class CMSKud {
         });
 
         m3.setOnAction( col -> { //Screenshot-a atera
-            String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
-            try {
-              takeScreenshoot(helbidea);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Thread task = new Thread(() -> {
+                String helbidea = tableId.getSelectionModel().getSelectedItem().getUrl();
+                try {
+                    takeScreenshoot(helbidea);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            task.start();
         });
 
 
