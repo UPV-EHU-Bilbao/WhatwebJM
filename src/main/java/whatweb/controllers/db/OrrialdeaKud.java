@@ -174,6 +174,7 @@ public class OrrialdeaKud {
 
     public void konprobatuURl(String lortuUrl) throws SQLException {
         String konprobatuQuery = "select target_id from targets where target glob '*"+lortuUrl+"*'";
+        System.out.println(konprobatuQuery);
         ResultSet rs = dbkud.execSQL(konprobatuQuery);
         if(rs.next()){
             String id = rs.getString("target_id");

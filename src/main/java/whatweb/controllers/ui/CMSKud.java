@@ -135,7 +135,7 @@ public class CMSKud {
                     e.printStackTrace();
                 }
             });
-            task.start();
+            task.run();
         });
 
 
@@ -155,7 +155,7 @@ public class CMSKud {
             helbideZuzena=helbidea.split("http://")[1];
         }
         if(helbideZuzena.charAt(helbideZuzena.length()-1)!='/'){
-            helbideZuzena=helbideZuzena+'/';
+            helbidea=helbidea+'/';
         }
         System.out.println("http://jonander.xyz:3000/"+helbideZuzena+"kaptura.png");
         Image i = new Image("http://jonander.xyz:3000/"+helbideZuzena+"kaptura.png",800,790,false,false);
