@@ -11,9 +11,7 @@ public class DBKud {
         try {
             fitxategiaSortu(dbpath);
            String pathprop= System.getProperty("user.home")+File.separator+dbpath;
-            Class.forName("org.sqlite.JDBC").newInstance();
             String url = "jdbc:sqlite:"+ pathprop ;
-            DriverManager.registerDriver(new org.sqlite.JDBC());
             conn = DriverManager.getConnection(url);
 
             System.out.println("Database connection established");
@@ -27,6 +25,7 @@ public void fitxategiaSortu(String dbpath) throws IOException {
     File fitx= new File(pathprop);
     if(!fitx.exists()){
         fitx.createNewFile();
+
     }
     }
 
