@@ -13,4 +13,5 @@ Hortaz gain, Firefox edo Chrome nabigatzaileak erabili nahi badituzu:
 * C:\Program Files\Mozilla Firefox direktorioan egon beharko da firefox.exe fitxategia
 
 ###Linux-en erabili baino lehen:
-* Datu Basea /
+* Datu Basea /home/user/.whatwebfx izeneko karpetaren barruan egon behar da.
+* Datu Basea whatweb.sqlite deitu behar da.
