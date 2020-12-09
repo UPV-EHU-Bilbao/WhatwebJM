@@ -26,6 +26,8 @@ public class App extends Application {
     private Stage stage;
     private Stage stageIrudia;
 
+    private double x,y;
+
     private MainKud mainKud;
     private WWKud whatWebKud;
     private CMSKud cmsKud;
@@ -41,10 +43,21 @@ public class App extends Application {
         pantailakKargatu();
         mainScene = new Scene(mainUI,1000,732);
         stage.initStyle(StageStyle.UNDECORATED);
+        pantailamugitu();
         hasieraKargatu();
 
     }
 
+    public void pantailamugitu(){
+        mainUI.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        mainUI.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+    }
     private void pantailakKargatu() throws IOException {
 
         FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/Main.fxml"));
