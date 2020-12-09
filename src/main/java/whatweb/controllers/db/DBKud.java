@@ -9,11 +9,10 @@ public class DBKud {
 
     private void conOpen(String dbpath) {
         try {
-            //3.23.1
-           //Class.forName("org.sqlite.jdbc");
-          // Class.forName("com.mysql.jdbc.Driver");
+            fitxategiaSortu(dbpath);
+           String pathprop= System.getProperty("user.home")+File.separator+dbpath;
             Class.forName("org.sqlite.JDBC").newInstance();
-            String url = "jdbc:sqlite:"+ dbpath ;
+            String url = "jdbc:sqlite:"+ pathprop ;
             DriverManager.registerDriver(new org.sqlite.JDBC());
             conn = DriverManager.getConnection(url);
 
@@ -23,7 +22,13 @@ public class DBKud {
         }
     }
 
-
+public void fitxategiaSortu(String dbpath) throws IOException {
+    String pathprop= System.getProperty("user.home")+File.separator+dbpath;
+    File fitx= new File(pathprop);
+    if(!fitx.exists()){
+        fitx.createNewFile();
+    }
+    }
 
     private void conClose() {
 
