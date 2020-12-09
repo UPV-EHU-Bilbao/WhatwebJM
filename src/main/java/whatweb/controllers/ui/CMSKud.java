@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.util.Callback;
 import whatweb.App;
 import whatweb.controllers.db.OrrialdeaKud;
+import whatweb.model.InterruptThread;
 import whatweb.model.Orrialde;
 
 public class CMSKud {
@@ -138,7 +139,6 @@ public class CMSKud {
             task.run();
         });
 
-
         cm.getItems().addAll(m1,m2,m3);
         tableId.setContextMenu(cm); //Taulan Context Menu txertatu
     }
@@ -148,6 +148,7 @@ public class CMSKud {
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
         try (InputStream stream = conn.getInputStream()) {
         }
+        new Thread(new InterruptThread(conn)).start();
         String helbideZuzena=""; //string hauek ondo konpondu behar dira oraindik
         if(helbidea.contains("https://")){
             helbideZuzena=helbidea.split("https://")[1];
