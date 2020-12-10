@@ -1,7 +1,12 @@
 package whatweb.controllers.db;
 
+import whatweb.model.Orrialde;
+
 import java.io.*;
+import java.nio.file.Files;
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 public class DBKud {
@@ -23,9 +28,9 @@ public class DBKud {
 public void fitxategiaSortu(String dbpath) throws IOException {
     String pathprop= System.getProperty("user.home")+File.separator+dbpath;
     File fitx= new File(pathprop);
-    if(!fitx.exists()){
+    if(!fitx.exists() || fitx.length()==0){
         fitx.createNewFile();
-
+        sortuDB();
     }
     }
 
@@ -84,6 +89,76 @@ public void fitxategiaSortu(String dbpath) throws IOException {
 
     public static DBKud getInstantzia() {
         return instantzia;
+    }
+
+    private List<String> sortuDB() throws IOException {
+        List<String> processes = new LinkedList<String>();
+        Properties properties=new Properties();
+        InputStream in= null;
+        in = this.getClass().getResourceAsStream("/setup.properties");
+        properties.load(in);
+        try {
+            String line;
+            Process p;
+
+            String exek="";
+            if(System.getProperty("os.name").toLowerCase().contains("win")) {
+                exek = "wsl whatweb --colour=never --log-sql-create=/mnt/c"+properties.getProperty("dbfilepath")+"datubase.txt ";
+                p = Runtime.getRuntime().exec(exek);
+            }else{
+                exek= "./whatweb --colour=never --log-sql-create=datubase.txt ikasten.io";
+                p = Runtime.getRuntime().exec(exek,null, new File("/opt/WhatWeb"));
+            }
+
+
+            BufferedReader input =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while ((line = input.readLine()) != null) {
+                processes.add(line);
+            }
+            BufferedReader reader;
+            if(System.getProperty("os.name").toLowerCase().contains("win")) {
+                reader = new BufferedReader(new FileReader( //fitxategia irakurtzen dugu
+                        "c:\\"+properties.getProperty("dbfilepath")+"datubase.txt"));
+            }else{
+                reader = new BufferedReader(new FileReader( "datubase.txt")); //fitxategia irakurtzen dugu
+
+            }
+            String sqlAgindu = reader.readLine();
+            Boolean aurkitua = false;
+            while (sqlAgindu != null) {
+                if(aurkitua){
+                    txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                }else{
+                    if(sqlAgindu.contains("200")){
+
+                        String lortuUrl = sqlAgindu.split("//")[1].split("/")[0].split("'\\)")[0];
+                        txertatu(sqlAgindu); //linea bakoitza datu baseak exekutatzen dugu
+                        aurkitua=true;
+                    }
+                }
+                sqlAgindu = reader.readLine();
+            }
+            input.close();
+            reader.close();
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+
+
+       Files.deleteIfExists( new File(properties.getProperty("dbfilepath")).toPath());
+        return processes;
+    }
+
+    private void txertatu(String agindu) throws SQLException { //DATU BASEAN GORDE SCANERRAREN DATUAK
+        //irakurri insertak
+        // konpondu queryak
+        //datu basean gorde
+        agindu=agindu.replace(" IGNORE", " OR IGNORE");
+        System.out.println(agindu);
+        OrrialdeaKud orkud= OrrialdeaKud.getInstantzia();
+        orkud.txertatuDatuak(agindu);
+
     }
 
     public ResultSet execSQL(String query) {
