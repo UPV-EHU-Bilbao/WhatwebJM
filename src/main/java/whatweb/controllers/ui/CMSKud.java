@@ -144,7 +144,7 @@ public class CMSKud {
     }
 
     private void takeScreenshoot(String helbidea) throws IOException { //metodo hau berregin behar da
-        URLConnection conn = new URL("http://jonander.xyz:3000/?page="+helbidea).openConnection(); //ez dakit beheko komando beharrezkoa den
+        URLConnection conn = new URL("http://jonander.xyz/screenshooter?page="+helbidea).openConnection(); //ez dakit beheko komando beharrezkoa den
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
         try (InputStream stream = conn.getInputStream()) {
         }
