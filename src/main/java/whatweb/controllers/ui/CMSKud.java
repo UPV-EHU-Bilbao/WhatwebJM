@@ -156,10 +156,9 @@ public class CMSKud {
             helbideZuzena=helbidea.split("http://")[1];
         }
         if(helbideZuzena.charAt(helbideZuzena.length()-1)!='/'){
-            helbidea=helbidea+'/';
+            helbideZuzena=helbideZuzena+'/';
         }
-        System.out.println("http://jonander.xyz:3000/"+helbideZuzena+"kaptura.png");
-        Image i = new Image("http://jonander.xyz:3000/"+helbideZuzena+"kaptura.png",800,790,false,false);
+        Image i = new Image("http://jonander.xyz/screenshooter/"+helbideZuzena+"kaptura.png",800,790,false,false);
         app.irudiaErakutsi(i);
     }
 

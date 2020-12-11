@@ -14,7 +14,6 @@ public class DBKud {
 
     private void conOpen(String dbpath) {
         try {
-            fitxategiaSortu(dbpath);
            String pathprop= System.getProperty("user.home")+File.separator+dbpath;
             String url = "jdbc:sqlite:"+ pathprop ;
             conn = DriverManager.getConnection(url);
@@ -25,14 +24,7 @@ public class DBKud {
         }
     }
 
-public void fitxategiaSortu(String dbpath) throws IOException {
-    String pathprop= System.getProperty("user.home")+File.separator+dbpath;
-    File fitx= new File(pathprop);
-    if(!fitx.exists() || fitx.length()==0){
-        fitx.createNewFile();
-        sortuDB();
-    }
-    }
+
 
     private void conClose() {
 
