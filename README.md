@@ -23,4 +23,4 @@ Hortaz gain, Firefox edo Chrome nabigatzaileak erabili nahi badituzu:
 *Firefox eta Chrome deskargatuta egon behar dira.
 
 ## Proiektuaren dokumentazioa hurrengo estekan dago eskuragarri:
-https://www.overleaf.com/project/5fc0c804065e3cc91d354e63
+https://www.overleaf.com/read/pzrzkgmftdgz
