@@ -24,5 +24,7 @@ Hortaz gain, Firefox edo Chrome nabigatzaileak erabili nahi badituzu:
 
 ## Proiektuaren dokumentazioa hurrengo estekan dago eskuragarri:
 [Overleaf proiektua](https://www.overleaf.com/read/pzrzkgmftdgz)
+
 [PDF formuatuan](WhatWebJM_Dokumentazioa.pdf)
+
 [Latex formuatuan](WhatWebJM_Dokumentazioa.zip)
