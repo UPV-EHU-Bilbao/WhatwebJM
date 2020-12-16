@@ -83,6 +83,7 @@ public class NabKud {
                     exek = "google-chrome " + url;
                     nab=false;
                 }
+                //jirherg
 
             }
             System.out.println(exek);
