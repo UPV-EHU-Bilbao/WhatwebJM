@@ -72,6 +72,7 @@ public class NabKud {
                 }
                 else{
                     exek = "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" " + url;
+                    nab=false;
                 }
 
             }else{
@@ -80,6 +81,7 @@ public class NabKud {
                 }
                 else{
                     exek = "google-chrome " + url;
+                    nab=false;
                 }
 
             }

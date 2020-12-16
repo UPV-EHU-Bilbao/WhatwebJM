@@ -16,7 +16,7 @@ Hortaz gain, Firefox edo Chrome nabigatzaileak erabili nahi badituzu:
 * Datu Basea /home/user/.whatwebfx/ izeneko karpetaren barruan egon behar da.
 * Datu Basea whatweb.sqlite deitu behar da.
 * Beraz, Datu Basearen helbidea hurrengoa izan behar du: /home/user/.whatwebfx/whatweb.sqlite
-                                                    edo: ~/.whatwebfx/whatweb.sqlite
+                                                    edo: ~/.whatwebfx/whatweb.sqlitem
 
 Hortaz gain, Firefox edo Chrome nabigatzaileak erabili nahi badituzu:
 
